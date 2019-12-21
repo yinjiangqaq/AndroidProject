@@ -46,7 +46,7 @@ private  static boolean isExit = false;//实现点击两次返回键退出程序
     }
 
 
-    @Override
+    @Override//实现点击两次返回键就退出应用的代码
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK) {
             exit();
