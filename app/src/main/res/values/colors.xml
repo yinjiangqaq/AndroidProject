@@ -3,6 +3,16 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
     <color name="colorAPP">#FFF77C</color>
     <color name="colorSendButton">#03A9F4</color>
+
+    <color name="red">#e64340</color>
+    <color name="green">#09BB07</color>
+    <color name="black">#353535</color>
+    <color name="gray">#888888</color>
+    <color name="seaBlue">#576B95</color>
+    <color name="skyBlue">#CFF9FF</color>
+    <color name="orange">#FF9933</color>
+
 </resources>

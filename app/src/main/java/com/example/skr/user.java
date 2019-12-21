@@ -1,6 +1,8 @@
 package com.example.skr;
 
-public class user {
+import org.litepal.crud.DataSupport;
+
+public class user extends DataSupport {
     private  String userName;//用户名
     private  String password;//用户密码
     private  String userAccount;//用户账号
