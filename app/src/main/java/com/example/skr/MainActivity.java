@@ -21,7 +21,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
-private  static boolean isExit = false;
+private  static boolean isExit = false;//实现点击两次返回键退出程序的功能
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {

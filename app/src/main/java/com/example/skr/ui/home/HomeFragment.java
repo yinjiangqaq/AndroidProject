@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -18,9 +20,12 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.example.skr.R;
 import com.example.skr.SnackAdapter;
 import com.example.skr.snack;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +40,19 @@ private List<snack> snackList = new ArrayList<>();
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         setHasOptionsMenu(true);
+        //定义一个悬浮可拖动按钮
+        final FloatingActionButton fab =  root.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
 
         return root;
     }
+
 
     @Override
     public void onStart() {
@@ -47,6 +62,7 @@ private List<snack> snackList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));//一定要加manager
         SnackAdapter adapter = new SnackAdapter(snackList);
         recyclerView.setAdapter(adapter);
+
     }
     private  void initSnack(){
         for(int i =0; i<20;i++){
@@ -54,6 +70,7 @@ private List<snack> snackList = new ArrayList<>();
             snackList.add(meet);
         }
     }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
 

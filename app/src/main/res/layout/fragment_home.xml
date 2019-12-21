@@ -18,9 +18,16 @@
 
    </androidx.recyclerview.widget.RecyclerView>
 
-   <com.google.android.material.floatingactionbutton.FloatingActionButton
-       android:id="@+id/send"
-       android:layout_width="50dp"
 
-       android:layout_height="50dp" />
+<com.example.skr.ScrollFloatinigButton
+    android:id="@+id/fab"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom|end"
+    android:layout_marginRight="10dp"
+    android:layout_marginBottom="70dp"
+    app:scrollEnable="true"
+    android:src="@drawable/ic_add_black_24dp"/>
+
+
 </FrameLayout>
