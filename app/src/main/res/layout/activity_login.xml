@@ -41,6 +41,8 @@
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:hint="输入账号"
+                android:lines="1"
+                android:inputType="text"
                 />
 
         </LinearLayout>
@@ -56,7 +58,9 @@
                 android:id="@+id/signIn_password"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:hint="输入密码"/>
+                android:hint="输入密码"
+                android:lines="1"
+                android:inputType="text"/>
 
         </LinearLayout>
 
@@ -68,7 +72,7 @@
             android:layout_marginTop="10dp"
             android:text="密码错误"
             android:textSize="20dp"
-            android:textColor="@color/red"
+            android:textColor="@color/Red"
             android:visibility="gone"/>
         <Button
             android:id="@+id/signIn_signInButton"
@@ -127,7 +131,9 @@
                 android:id="@+id/signUp_account"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:hint="设置账号"/>
+                android:hint="设置账号"
+                android:lines="1"
+                android:inputType="text"/>
 
         </LinearLayout>
 
@@ -142,7 +148,9 @@
                 android:id="@+id/signUp_password"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:hint="设置密码"/>
+                android:hint="设置密码"
+                android:lines="1"
+                android:inputType="text"/>
 
         </LinearLayout>
 
@@ -178,7 +186,7 @@
             android:layout_marginTop="10dp"
             android:text="账号已被注册"
             android:textSize="20dp"
-            android:textColor="@color/red"
+            android:textColor="@color/Red"
             android:visibility="gone"/>
 
     </LinearLayout>

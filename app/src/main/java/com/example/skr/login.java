@@ -92,9 +92,18 @@ public class login extends AppCompatActivity{
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        becomeClear();
         signUp_view.setVisibility(View.GONE);
-        signIn_tip.setVisibility(View.GONE);
         signIn_view.setVisibility(View.VISIBLE);
+    }
+
+    public void becomeClear(){
+        signIn_account.setText("");
+        signIn_password.setText("");
+        signUp_account.setText("");
+        signUp_password.setText("");
+        signIn_tip.setVisibility(View.GONE);
+        signUp_tip.setVisibility(View.GONE);
     }
 
     public void ClickIIB(){
@@ -102,7 +111,7 @@ public class login extends AppCompatActivity{
         List<user> userList2;
         if (signIn_account.getText().toString().trim().isEmpty() || signIn_password.getText().toString().trim().isEmpty()){
             signIn_tip.setText("请正确输入账号和密码");
-            signIn_tip.setTextColor(this.getResources().getColor(R.color.red));
+            signIn_tip.setTextColor(this.getResources().getColor(R.color.Red));
             signIn_tip.setVisibility(View.VISIBLE);
         }
         else {
@@ -125,7 +134,7 @@ public class login extends AppCompatActivity{
             }
             if (userList==null||userList.size()==0){
                 signIn_tip.setText("查无此账号");
-                signIn_tip.setTextColor(this.getResources().getColor(R.color.red));
+                signIn_tip.setTextColor(this.getResources().getColor(R.color.Red));
                 signIn_tip.setVisibility(View.VISIBLE);
             }
             else {
@@ -134,7 +143,7 @@ public class login extends AppCompatActivity{
                 Log.d("testMessage",signIn_password.getText().toString() );
                 if (signIn_password.getText().toString().equals(temp.getPassword())){
                     signIn_tip.setText("登录成功");
-                    signIn_tip.setTextColor(this.getResources().getColor(R.color.green));
+                    signIn_tip.setTextColor(this.getResources().getColor(R.color.Green));
                     signIn_tip.setVisibility(View.VISIBLE);
 
                     Intent intent = new Intent(login.this,MainActivity.class);
@@ -143,14 +152,14 @@ public class login extends AppCompatActivity{
                 }
                 else {
                     signIn_tip.setText("密码错误");
-                    signIn_tip.setTextColor(this.getResources().getColor(R.color.red));
+                    signIn_tip.setTextColor(this.getResources().getColor(R.color.Red));
                     signIn_tip.setVisibility(View.VISIBLE);
                 }
             }
         }
     }
     public void ClickIUB(){
-        signUp_tip.setVisibility(View.GONE);
+        becomeClear();
         signUp_view.setVisibility(View.VISIBLE);
         signIn_view.setVisibility(View.GONE);
     }
@@ -163,7 +172,7 @@ public class login extends AppCompatActivity{
         List<user> userList;
         if (signUp_account.getText().toString().trim().isEmpty() || signUp_password.getText().toString().trim().isEmpty()){
             signUp_tip.setText("请正确输入账号和密码");
-            signUp_tip.setTextColor(this.getResources().getColor(R.color.red));
+            signUp_tip.setTextColor(this.getResources().getColor(R.color.Red));
             signUp_tip.setVisibility(View.VISIBLE);
         }
         else {
@@ -182,7 +191,7 @@ public class login extends AppCompatActivity{
                 me.save();
 
                 signUp_tip.setText("注册成功");
-                signUp_tip.setTextColor(this.getResources().getColor(R.color.green));
+                signUp_tip.setTextColor(this.getResources().getColor(R.color.Green));
                 signUp_tip.setVisibility(View.VISIBLE);
 
                 Intent intent = new Intent(login.this,MainActivity.class);
@@ -191,14 +200,14 @@ public class login extends AppCompatActivity{
             }
             else {
                 signUp_tip.setText("该账号已被注册");
-                signUp_tip.setTextColor(this.getResources().getColor(R.color.red));
+                signUp_tip.setTextColor(this.getResources().getColor(R.color.Red));
                 signUp_tip.setVisibility(View.VISIBLE);
             }
         }
     }
 
     public void ClickUGB(){
-        signIn_tip.setVisibility(View.GONE);
+        becomeClear();
         signIn_view.setVisibility(View.VISIBLE);
         signUp_view.setVisibility(View.GONE);
     }
