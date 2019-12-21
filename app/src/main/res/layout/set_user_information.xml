@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="#CCCCCC"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:background="#FFFFFF"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="5"
+    android:orientation="horizontal"
+    >
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6"
+        android:text="头像"
+        android:textSize="20dp"
+        android:gravity="center|left"
+        ></TextView>
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:src="@drawable/shoucang"
+
+        android:layout_marginRight="20dp"
+        >
+    </ImageView>
+
+</LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="1dp"
+
+        android:background="#22000000"/>
+
+    <LinearLayout
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:textSize="20dp"
+            android:text="昵称"
+            android:gravity="center|left"
+            ></TextView>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+             android:text="无所谓"
+            android:textSize="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@null"
+            android:gravity="center"
+            >
+        </EditText>
+
+    </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="1dp"
+
+        android:background="#22000000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="账号"
+            android:textSize="20dp"
+            android:gravity="center|left"
+            ></TextView>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center|right"
+            android:textSize="20dp"
+            android:layout_marginRight="20dp"
+            android:text="lt15918871317"
+            android:background="@null"
+            >
+        </EditText>
+
+    </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="1dp"
+
+        android:background="#22000000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="生日"
+            android:textSize="20dp"
+            android:gravity="center|left"
+            ></TextView>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center|right"
+            android:text="2000年0月0号"
+            android:textSize="20dp"
+            android:background="@null"
+            android:layout_marginRight="20dp"
+            >
+        </EditText>
+
+    </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="1dp"
+
+        android:background="#22000000"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:text="更多"
+            android:textSize="20dp"
+            android:gravity="center|left"
+            ></TextView>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            >
+        </ImageView>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text=">"
+            android:textSize="20dp"
+
+            android:gravity="center|left"
+            ></TextView>
+    </LinearLayout>
+    <View
+
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+
+        android:background="#22000000"/>
+     <LinearLayout
+         android:descendantFocusability="blocksDescendants"
+    android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="5"
+         >
+         <Button
+             android:id="@+id/save"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:text="保存"
+             android:textSize="30dp"
+             android:clickable="true"
+             android:background="#FFFFFF"
+             ></Button>
+     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        >
+
+    </LinearLayout>
+
+
+</LinearLayout>
