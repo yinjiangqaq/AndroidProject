@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
+
+    <com.xuexiang.xui.widget.edittext.ClearEditText
         android:id="@+id/posting_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="10dp"
-        android:singleLine="true"
-        android:textSize="22dp"
+        android:textSize="20dp"
         android:hint="加个标题哦~"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/posting_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginVertical="5dp"
-                android:minLines="8"
-                android:gravity="top"
-                android:hint="来吧，尽情发挥吧~"
-                android:background="@null"/>
-        </LinearLayout>
-    </ScrollView>
+    <com.xuexiang.xui.widget.edittext.MultiLineEditText
+        android:id="@+id/posting_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mlet_hintText="来吧，尽情发挥吧~"
+        app:mlet_maxCount="500"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="5dp"/>
 
     <ImageView
         android:id="@+id/posting_selectImageButton"
@@ -40,6 +31,7 @@
         android:layout_marginVertical="5dp"
         android:layout_marginLeft="20dp"
         android:src="@drawable/add"/>
+
 
 <!--    <ScrollView-->
 <!--        android:id="@+id/posting_imageList"-->
@@ -52,19 +44,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="150dp"
         android:layout_marginVertical="5dp"
         android:layout_marginHorizontal="20dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/posting_imagesList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/posting_imagesList"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            />-->
+
+        <ImageView
+            android:id="@+id/posting_selectImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             />
 
     </LinearLayout>
 
-    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+<!--    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton-->
+<!--        android:id="@+id/posting_postButton"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginRight="20dp"-->
+<!--        android:layout_gravity="right"-->
+<!--        android:text="发布"/>-->
+
+    <com.xuexiang.xui.widget.button.roundbutton.RoundButton
+        style="@style/RoundButton.Auto"
         android:id="@+id/posting_postButton"
         android:layout_width="60dp"
         android:layout_height="30dp"
@@ -72,6 +80,8 @@
         android:layout_marginRight="20dp"
         android:layout_gravity="right"
         android:text="发布"/>
+
+
 
 
 

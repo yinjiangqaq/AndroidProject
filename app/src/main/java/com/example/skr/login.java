@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.xuexiang.xui.XUI;
+import com.xuexiang.xui.widget.edittext.PasswordEditText;
+
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
@@ -26,13 +29,15 @@ public class login extends AppCompatActivity{
             signUn_goBackButton;
     LinearLayout signIn_view, signUp_view;
     EditText signIn_account,
-             signIn_password,
-             signUp_account,
-             signUp_password;
+            signUp_account;
+//             signIn_password,
+//             signUp_password;
+    PasswordEditText signIn_password, signUp_password;
     TextView signIn_tip,signUp_tip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        XUI.initTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -80,9 +85,12 @@ public class login extends AppCompatActivity{
         signUp_view = (LinearLayout) findViewById(R.id.signUp_view);
 
         signIn_account = (EditText) findViewById(R.id.signIn_account);
-        signIn_password = (EditText) findViewById(R.id.signIn_password);
+//        signIn_password = (EditText) findViewById(R.id.signIn_password);
         signUp_account = (EditText) findViewById(R.id.signUp_account);
-        signUp_password = (EditText) findViewById(R.id.signUp_password);
+//        signUp_password = (EditText) findViewById(R.id.signUp_password);
+
+        signIn_password = (PasswordEditText) findViewById(R.id.signIn_password);
+        signUp_password = (PasswordEditText) findViewById(R.id.signUp_password);
 
         signIn_tip = (TextView) findViewById(R.id.signIn_tip);
         signUp_tip = (TextView) findViewById(R.id.signUp_tip);
@@ -140,7 +148,7 @@ public class login extends AppCompatActivity{
             else {
                 user temp = userList.get(0);
                 Log.d("testMessage",temp.getPassword() );
-                Log.d("testMessage",signIn_password.getText().toString() );
+//                Log.d("testMessage",signIn_password.getText().toString() );
                 if (signIn_password.getText().toString().equals(temp.getPassword())){
                     signIn_tip.setText("登录成功");
                     signIn_tip.setTextColor(this.getResources().getColor(R.color.Green));
