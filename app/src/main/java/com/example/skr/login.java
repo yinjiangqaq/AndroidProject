@@ -154,8 +154,16 @@ public class login extends AppCompatActivity{
                     signIn_tip.setTextColor(this.getResources().getColor(R.color.Green));
                     signIn_tip.setVisibility(View.VISIBLE);
 
+
+                    MyApplication.infoMap.put("userAccount",signIn_account.getText().toString());
+
                     Intent intent = new Intent(login.this,MainActivity.class);
                     startActivity(intent);
+
+//                    Intent intent = new Intent(login.this,MainActivity.class);
+//                    intent.putExtra("userAccount", signIn_account.getText().toString());
+//                    startActivity(intent);
+
 
                 }
                 else {
@@ -201,6 +209,9 @@ public class login extends AppCompatActivity{
                 signUp_tip.setText("注册成功");
                 signUp_tip.setTextColor(this.getResources().getColor(R.color.Green));
                 signUp_tip.setVisibility(View.VISIBLE);
+
+                MyApplication.infoMap.put("userAccount",signIn_account.getText().toString());
+
 
                 Intent intent = new Intent(login.this,MainActivity.class);
                 startActivity(intent);

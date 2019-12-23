@@ -14,31 +14,41 @@
 
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="4"
             android:orientation="horizontal"
             >
-            <ImageView
-                android:src="@drawable/qiaokeli"
-
-                android:layout_marginLeft="30dp"
-                android:id="@+id/image"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                ></ImageView>
+                android:layout_weight="1.5"
+                >
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:src="@drawable/shoucang"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:layout_marginLeft="30dp"
+                    android:id="@+id/image"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:riv_oval="true"
+
+
+                    ></com.makeramen.roundedimageview.RoundedImageView>
+            </LinearLayout>
             <LinearLayout
                 android:layout_weight="2"
                 android:layout_width="0dp"
                 android:orientation="vertical"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/userName"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:textSize="25dp"
 
                     android:layout_marginLeft="10dp"
-                    android:text="无所谓"
+
                     ></TextView>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -46,13 +56,14 @@
                     android:layout_height="0dp"
                     android:layout_weight="1">
                     <TextView
+                        android:id="@+id/userAccount"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="1dp"
                         android:layout_weight="3"
                         android:layout_width="0dp"
                         android:textSize="15dp"
-                        android:text="微信号15918871317"></TextView>
+                        ></TextView>
                     <TextView
 
                         android:id="@+id/set_user_information"
@@ -83,24 +94,27 @@
             android:orientation="horizontal"
             android:layout_weight="1.5">
             <TextView
+                android:id="@+id/fan"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="15粉丝"
+
                 android:gravity="center"
                 android:textSize="15dp"
                 ></TextView>
             <TextView
+                android:id="@+id/follow"
                 android:textSize="15dp"
-                android:text="20关注"
+
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 ></TextView>
             <TextView
+                android:id="@+id/fatie"
                 android:textSize="15dp"
-                android:text="5发帖"
+
                 android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -204,7 +218,7 @@
 
 
             <LinearLayout
-
+                android:id="@+id/set"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -227,7 +241,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="设置"></TextView>
                 <TextView
-                    android:id="@+id/set"
+
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
