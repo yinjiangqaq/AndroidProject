@@ -1,6 +1,8 @@
 package com.example.skr;
 
-public class post {
+import org.litepal.crud.DataSupport;
+
+public class post extends DataSupport {
     private String  post_id; //帖子id
     private String userAccount; //用户账号
     private String post_title;//帖子标题

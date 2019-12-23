@@ -1,5 +1,6 @@
 package com.example.skr.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.skr.R;
 import com.example.skr.SnackAdapter;
+import com.example.skr.posting;
 import com.example.skr.snack;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -47,6 +49,9 @@ private List<snack> snackList = new ArrayList<>();
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                //添加跳转
+                Intent intent = new Intent(getActivity(),posting.class);
+                startActivity(intent);
             }
         });
 
