@@ -3,6 +3,78 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    
+    <EditText
+        android:id="@+id/posting_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:singleLine="true"
+        android:textSize="22dp"
+        android:hint="加个标题哦~"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/posting_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:minLines="8"
+                android:gravity="top"
+                android:hint="来吧，尽情发挥吧~"
+                android:background="@null"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/posting_selectImageButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginVertical="5dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/add"/>
+
+<!--    <ScrollView-->
+<!--        android:id="@+id/posting_imageList"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="80dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:layout_marginHorizontal="20dp">-->
+
+<!--    </ScrollView>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="20dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/posting_imagesList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </LinearLayout>
+
+    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+        android:id="@+id/posting_postButton"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right"
+        android:text="发布"/>
+
+
+
+
 
 </LinearLayout>
