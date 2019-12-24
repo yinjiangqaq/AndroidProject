@@ -37,22 +37,27 @@
         </provider>
         <activity
             android:name=".set_user_information"
+            android:launchMode="singleTask"
             android:label="个人信息">
         </activity>
         <activity
             android:name=".set"
+            android:launchMode="singleTask"
             android:label="设置">
         </activity>
 
 <activity
     android:name=".detail"
+    android:launchMode="singleTask"
     android:label="帖子详情">
 
 </activity>
         <activity android:name=".replyTo"
+            android:launchMode="singleTask"
             android:label="回复"></activity>
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleTask"
             android:label="@string/app_name"></activity>
 
 

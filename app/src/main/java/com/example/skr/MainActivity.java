@@ -73,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"再按一次退出程序",Toast.LENGTH_SHORT).show();
             handler.sendEmptyMessageDelayed(0,2000);
         }else {
-            finish();
+//            finish();
+            finishAffinity();//把所有活动都finish了，然后下面系统退出,返回主界面
             System.exit(0);
         }
     }

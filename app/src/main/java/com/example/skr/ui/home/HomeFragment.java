@@ -1,5 +1,6 @@
 package com.example.skr.ui.home;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -22,25 +23,37 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.skr.MainActivity;
 import com.example.skr.R;
 import com.example.skr.SnackAdapter;
+import com.example.skr.post;
 import com.example.skr.posting;
-import com.example.skr.snack;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
+    String userAccount;
     private HomeViewModel homeViewModel;
-    private List<snack> snackList = new ArrayList<>();
+  //  private List<snack> snackList = new ArrayList<>();
+    private List<post> snackList = new ArrayList<>();
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        userAccount = ((MainActivity)getActivity()).getUseraccount();
 
+    }
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         setHasOptionsMenu(true);
+        Connector.getDatabase();
+
         //定义一个悬浮可拖动按钮
         final FloatingActionButton fab =  root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +73,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onStart() {
+        Connector.getDatabase();
         initSnack();
         super.onStart();
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.snack);
@@ -69,10 +83,13 @@ public class HomeFragment extends Fragment {
     }
 
     private  void initSnack(){
-        for(int i =0; i<20;i++){
-            snack meet = new snack("beef",R.drawable.beef);
-            snackList.add(meet);
-        }
+//        for(int i =0; i<20;i++){
+//            snack meet = new snack("beef",R.drawable.beef);
+//            snackList.add(meet);
+//
+//        }
+        snackList= DataSupport.findAll(post.class);
+
     }
 
     @Override

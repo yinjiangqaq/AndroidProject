@@ -2,6 +2,8 @@ package com.example.skr;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +18,8 @@ import java.util.List;
 import static androidx.core.content.ContextCompat.startActivity;
 
 public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> {
-    private List<snack> snackList;
+   // private List<snack> snackList;
+    private List<post> snackList;
     static class ViewHolder extends  RecyclerView.ViewHolder{
         ImageView snackImage;
         TextView snackTitle;
@@ -27,7 +30,7 @@ public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> 
         }
 
     }
-    public SnackAdapter(List<snack> SnackList){snackList = SnackList;}
+    public SnackAdapter(List<post> SnackList){snackList = SnackList;}
 
     @NonNull
     @Override
@@ -40,15 +43,18 @@ public class SnackAdapter extends RecyclerView.Adapter<SnackAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        snack Snack = snackList.get(position);
-        holder.snackImage.setImageResource(Snack.getImageId());
-        holder.snackTitle.setText(Snack.getName());
+       final post Snack = snackList.get(position);
+        Bitmap bitmap = BitmapFactory.decodeFile(Snack.getPost_image());
+        holder.snackImage.setImageBitmap(bitmap);
+        holder.snackTitle.setText(Snack.getPost_title());
 //在这里实现snackitem的页面跳转，跳转到详情页面
         holder.snackImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(view.getContext(),detail.class);
+                intent.putExtra("userAccount",Snack.getUserAccount());
+                intent.putExtra("post_id",Snack.getPost_id());
                 view.getContext().startActivity(intent);
 
             }

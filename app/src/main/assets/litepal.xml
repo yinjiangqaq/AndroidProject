@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <litepal>
     <dbname value="skr" ></dbname>
-    <version value="2"></version>
+    <version value="3"></version>
 
     <list>
         <mapping class="com.example.skr.user"></mapping>
         <mapping class="com.example.skr.post"></mapping>
         <mapping class="com.example.skr.follow"></mapping>
         <mapping class="com.example.skr.fan"></mapping>
+        <mapping class="com.example.skr.comment"></mapping>
+        <mapping class="com.example.skr.reply"></mapping>
     </list>
 </litepal>

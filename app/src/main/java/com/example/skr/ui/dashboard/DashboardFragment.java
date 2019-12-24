@@ -1,5 +1,6 @@
 package com.example.skr.ui.dashboard;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,17 +15,28 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.skr.MainActivity;
 import com.example.skr.R;
 import com.example.skr.SnackAdapter;
-import com.example.skr.snack;
+import com.example.skr.post;
+
+
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
-    private List<snack> snackList = new ArrayList<>();
+    String userAccount;
+   // private List<snack> snackList = new ArrayList<>();
+    private List<post> snackList = new ArrayList<>();
     private DashboardViewModel dashboardViewModel;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        userAccount = ((MainActivity)getActivity()).getUseraccount();
 
+    }
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
@@ -36,6 +48,7 @@ public class DashboardFragment extends Fragment {
         return root;
     }
     public void onStart() {
+        Connector.getDatabase();
         initSnack();
         super.onStart();
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.ranking);
@@ -44,11 +57,14 @@ public class DashboardFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
     private  void initSnack(){
-        for(int i =0; i<20;i++){
-            snack chips = new snack("chips",R.drawable.chips);
-            snackList.add(chips);
-            snack meet = new snack("beef",R.drawable.beef);
-            snackList.add(meet);
-        }
+//        for(int i =0; i<20;i++){
+//            snack chips = new snack("chips",R.drawable.chips);
+//            snackList.add(chips);
+//            snack meet = new snack("beef",R.drawable.beef);
+//            snackList.add(meet);
+//        }
+
+        snackList= DataSupport.findAll(post.class);
+
     }
 }
