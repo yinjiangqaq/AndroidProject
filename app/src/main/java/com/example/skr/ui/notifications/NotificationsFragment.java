@@ -35,6 +35,7 @@ import com.example.skr.set;
 import com.example.skr.set_user_information;
 import com.example.skr.user;
 
+import org.litepal.LitePalApplication;
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 import org.litepal.util.Const;
@@ -81,7 +82,7 @@ public class NotificationsFragment extends Fragment {
 
 
 
-        final TextView setinformation = root.findViewById(R.id.set_user_information);
+        final LinearLayout setinformation = root.findViewById(R.id.set_user_information);
         final LinearLayout set=root.findViewById(R.id.set);
         fan=root.findViewById(R.id.fan);
         follow=root.findViewById(R.id.follow);
