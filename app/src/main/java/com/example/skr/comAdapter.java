@@ -2,6 +2,8 @@ package com.example.skr;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,17 +15,22 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
+
 import java.util.List;
 
 public class comAdapter extends ArrayAdapter<comment> {
     private int resourceId;
-
+    private  List<user> commentUser;
     public comAdapter(Context context, int textViewResourceId, List<comment> objects) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
+        //拿到评论的数据，并返回打印在评论组件上
+        Connector.getDatabase();
         comment comment = getItem(position);
         View view;
         if (convertView == null) {
@@ -36,6 +43,16 @@ public class comAdapter extends ArrayAdapter<comment> {
         comment_text.setText(comment.getComment_content());
       TextView comment_time = (TextView) view.findViewById(R.id.message_card_user_time);
       comment_time.setText(comment.getComment_time());
+      TextView comment_userName = (TextView) view.findViewById(R.id.message_card_user_name);
+     String userComment =comment.getUserAccount();
+     commentUser = DataSupport.where("userAccount=?",userComment).find(user.class);
+     user commentuser1 = commentUser.get(0);
+     String commentUserName =commentuser1.getUserName();
+     comment_userName.setText(commentUserName);
+     String commentUserPortrait = commentuser1.getPortrait();
+        Bitmap bitmap =  BitmapFactory.decodeFile(commentUserPortrait);
+        ImageView CommentUserPortrait = (ImageView) view.findViewById(R.id.message_card_user_head);
+        CommentUserPortrait.setImageBitmap(bitmap);
      //判断查看回复按钮是不是没有，如果没有则是采用comment_item2的adapter模式，如果找得到，则采用comment_item的adapter的模式
     if((Button) view.findViewById(R.id.repeatButton)==null){
 

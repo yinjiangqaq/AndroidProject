@@ -1,6 +1,8 @@
 package com.example.skr;
 
-public class comment {
+import org.litepal.crud.DataSupport;
+
+public class comment extends DataSupport {
     private  String  comment_id;//评论的id
     private String post_id;//帖子的id
     private  String userAccount;//评论的用户的账户
