@@ -139,11 +139,11 @@ public class posting extends AppCompatActivity {
                         String userAccount = (String) MyApplication.infoMap.get("userAccount");
                         post myNewPost = new post();
                         myNewPost.setPost_id(UUID.randomUUID().toString());
-                        myNewPost.setUserAccount(userAccount);                           //此处要改
+                        myNewPost.setUserAccount(userAccount);
                         myNewPost.setPost_title(posting_title.getText().toString());
                         myNewPost.setPost_content(posting_content.getContentText());
-                        myNewPost.setPost_image(posting_imagePath);                                    //此处要改
-                        myNewPost.setPost_time("2020/1/1");                             //此处要改
+                        myNewPost.setPost_image(posting_imagePath);
+                        myNewPost.setPost_time(MyApplication.getNowTime());
                         myNewPost.save();
 
                         XToast.success(posting.this,"发帖成功").show();

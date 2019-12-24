@@ -12,6 +12,8 @@ import com.xuexiang.xui.XUI;
 import org.litepal.LitePalApplication;
 import org.litepal.util.Const;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -20,6 +22,8 @@ public class MyApplication extends Application {
     public static HashMap<String , Object> infoMap = new HashMap<String, Object>();
 
     private static MyApplication mApp;
+
+    private static Calendar calendar;
 
     public static MyApplication getInstance(){
         return mApp;
@@ -31,6 +35,7 @@ public class MyApplication extends Application {
         super.onCreate();
 
         mApp = this;
+        calendar = Calendar.getInstance();
 
         XUI.init(this);
         XUI.debug(true);
@@ -48,6 +53,26 @@ public class MyApplication extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //获取现在时间
+    public static String getNowTime(){
+        String nowTime = "2019-12-12 13:13";
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH)+1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+
+        nowTime = Integer.toString(year)
+                + "-" + Integer.toString(month)
+                + "-" + Integer.toString(day)
+                + " "
+                + Integer.toString(hour)
+                + ":" + Integer.toString(minute);
+
+
+        return nowTime;
     }
 
 }
