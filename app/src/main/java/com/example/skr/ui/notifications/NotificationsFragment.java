@@ -61,7 +61,7 @@ public class NotificationsFragment extends Fragment {
 
     public void onAttach(Context context) {
         super.onAttach(context);
-        userAccount = (String) MyApplication.infoMap.get("userAccount");
+        userAccount = ((MainActivity)getActivity()).getUseraccount();
 
     }
     private void requestWritePermission(){
@@ -153,7 +153,6 @@ public class NotificationsFragment extends Fragment {
         }else{}
         if(user.getPortrait()!=null)
         {
-
             Bitmap bitmap = BitmapFactory.decodeFile(user.getPortrait());
             picture.setImageBitmap(bitmap);
         }

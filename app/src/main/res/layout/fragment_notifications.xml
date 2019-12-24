@@ -23,7 +23,7 @@
                 android:layout_weight="1.5"
                 >
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:src="@drawable/shoucang"
+                    android:src="@drawable/head"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     android:layout_marginLeft="30dp"

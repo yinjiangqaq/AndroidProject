@@ -22,11 +22,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
-private  static boolean isExit = false;//实现点击两次返回键退出程序的功能
-//    String useraccount;
-//    public String getUseraccount(){
-//        return useraccount;
-//    }
+
+    private  static boolean isExit = false;//实现点击两次返回键退出程序的功能
+
+    String useraccount;
+
+    public String getUseraccount(){
+        return useraccount;
+    }
+
     Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -34,6 +38,7 @@ private  static boolean isExit = false;//实现点击两次返回键退出程序
             isExit=false;
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +46,10 @@ private  static boolean isExit = false;//实现点击两次返回键退出程序
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-//        Intent intent=getIntent();
-//        String userAccount=intent.getStringExtra("userAccount");
+        Intent intent=getIntent();
+        String userAccount=intent.getStringExtra("userAccount");
 
-//        useraccount=userAccount;
+        useraccount=userAccount;
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
