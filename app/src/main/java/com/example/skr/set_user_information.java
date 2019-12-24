@@ -68,13 +68,13 @@ public class set_user_information extends AppCompatActivity {
         userAccount.setText(intent.getStringExtra("userAccount"));
 //        userAccount.setText(intent.getStringExtra("userAccount"));
 
-        Log.d("set_user_info", "infoMap.get('userAccount'):"+MyApplication.infoMap.get("userAccount"));
-        Log.d("set_user_info", "userAccount:"+userAccount.getText().toString());
-        if (TextUtils.isEmpty((String)MyApplication.infoMap.get("userAccount"))){
-            Log.d("set_user_info", "infoMap.get('userAccount') is null or '' :"+MyApplication.infoMap.get("userAccount"));
-        }else {
-            Log.d("set_user_info", "infoMap.get('userAccount') is not null or '' :"+MyApplication.infoMap.get("userAccount"));
-        }
+//        Log.d("set_user_info", "infoMap.get('userAccount'):"+MyApplication.infoMap.get("userAccount"));
+//        Log.d("set_user_info", "userAccount:"+userAccount.getText().toString());
+//        if (TextUtils.isEmpty((String)MyApplication.infoMap.get("userAccount"))){
+//            Log.d("set_user_info", "infoMap.get('userAccount') is null or '' :"+MyApplication.infoMap.get("userAccount"));
+//        }else {
+//            Log.d("set_user_info", "infoMap.get('userAccount') is not null or '' :"+MyApplication.infoMap.get("userAccount"));
+//        }
 
         userList=DataSupport.where("userAccount=?",userAccount.getText().toString()).find(user.class);
         final user user=userList.get(0);

@@ -232,7 +232,7 @@ public class login extends AppCompatActivity{
                 me.setSex("男");
                 me.setUserName("新用户");
                 me.setUserIntro("我的个性签名");
-           //     me.setPortrait("");
+        //                me.setPortrait("");
                 me.save();
 
                 XToast.success(this,"注册成功").show();
@@ -251,7 +251,7 @@ public class login extends AppCompatActivity{
                 Intent intent = new Intent(login.this,MainActivity.class);
                 intent.putExtra("userAccount",signUp_account.getText().toString());
                 startActivity(intent);
-
+                finish();
 
             }
             else {
