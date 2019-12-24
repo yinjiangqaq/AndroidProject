@@ -114,12 +114,12 @@
         android:orientation="horizontal"
         android:background="#FFFFFF"
         >
-       <Button
-           android:id="@+id/changeuser"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:text="切换账号"
-           ></Button>
+        <Button
+            android:id="@+id/changeuser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="切换账号"
+            ></Button>
 
     </LinearLayout>
     <View

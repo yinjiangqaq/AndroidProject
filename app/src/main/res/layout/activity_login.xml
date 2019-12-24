@@ -31,7 +31,7 @@
         <LinearLayout
             android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:background="@drawable/editframe">
 
@@ -41,6 +41,8 @@
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:hint="输入账号"
+                android:lines="1"
+                android:inputType="text"
                 />
 
         </LinearLayout>
@@ -52,7 +54,15 @@
             android:gravity="center"
             android:background="@drawable/editframe">
 
-            <EditText
+<!--            <EditText-->
+<!--                android:id="@+id/signIn_password"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="输入密码"-->
+<!--                android:lines="1"-->
+<!--                android:inputType="text"/>-->
+
+            <com.xuexiang.xui.widget.edittext.PasswordEditText
                 android:id="@+id/signIn_password"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
@@ -68,7 +78,7 @@
             android:layout_marginTop="10dp"
             android:text="密码错误"
             android:textSize="20dp"
-            android:textColor="@color/red"
+            android:textColor="@color/Red"
             android:visibility="gone"/>
         <Button
             android:id="@+id/signIn_signInButton"
@@ -77,7 +87,14 @@
             android:layout_gravity="center"
             android:background="@drawable/myroundbutton"
             android:text="登录"
-            android:layout_marginTop="10dp"/>
+            android:textSize="20dp"
+            android:layout_marginTop="20dp"/>
+
+<!--        <com.xuexiang.xui.widget.button.roundbutton.RoundButton-->
+<!--            android:layout_width="60dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:text="登录"/>-->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,7 +144,9 @@
                 android:id="@+id/signUp_account"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
-                android:hint="设置账号"/>
+                android:hint="设置账号"
+                android:lines="1"
+                android:inputType="text"/>
 
         </LinearLayout>
 
@@ -138,7 +157,15 @@
             android:gravity="center"
             android:background="@drawable/editframe">
 
-            <EditText
+<!--            <EditText-->
+<!--                android:id="@+id/signUp_password"-->
+<!--                android:layout_width="270dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="设置密码"-->
+<!--                android:lines="1"-->
+<!--                android:inputType="text"/>-->
+
+            <com.xuexiang.xui.widget.edittext.PasswordEditText
                 android:id="@+id/signUp_password"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
@@ -178,7 +205,7 @@
             android:layout_marginTop="10dp"
             android:text="账号已被注册"
             android:textSize="20dp"
-            android:textColor="@color/red"
+            android:textColor="@color/Red"
             android:visibility="gone"/>
 
     </LinearLayout>

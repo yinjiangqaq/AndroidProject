@@ -16,33 +16,107 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import com.example.skr.ui.notifications.NotificationsFragment;
+
+import org.litepal.util.Const;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 public class set_user_information extends AppCompatActivity {
     public static final int CHOOSE_PHOTO=2;
     public  static  final  int TAKE_PHOTO=1;
     private ImageView picture;
     private Uri imageUri;
+    String imagePath;
+    Button save;
+    EditText birthday;
+    EditText userName;
+    EditText sex;
+    TextView userAccount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final Intent intent=getIntent();
         setContentView(R.layout.set_user_information);
         picture=(ImageView)findViewById(R.id.picture);
         Button button=(Button)findViewById(R.id.save);
 
+        Connector.getDatabase();
+        List<user> userList;
 
-    picture .setOnClickListener(new View.OnClickListener() {
+        userAccount=(TextView) findViewById(R.id.userAccount);
+        birthday=(EditText)findViewById(R.id.birthday);
+        userName=(EditText)findViewById(R.id.userName);
+        sex=(EditText) findViewById(R.id.sex);
+        save=(Button)findViewById(R.id.save);
+        userAccount.setText((String)MyApplication.infoMap.get("userAccount"));
+
+//        userAccount.setText(intent.getStringExtra("userAccount"));
+
+        userList=DataSupport.where("userAccount=?",userAccount.getText().toString()).find(user.class);
+        final user user=userList.get(0);
+        if(user.getBirthday()!=null)
+        {
+            birthday.setText(user.getBirthday());
+        }
+        else
+        { }
+        if(user.getUserName()!=null)
+        {
+            userName.setText(user.getUserName());
+        }
+        else {}
+        if(user.getSex()!=null)
+        {
+            sex.setText(user.getSex());
+        }else {}
+        if(user.getPortrait()!=null)
+        {
+
+            Bitmap bitmap = BitmapFactory.decodeFile(user.getPortrait());
+            picture.setImageBitmap(bitmap);
+        }
+        else{}
+
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                user user1=new user();
+                user1.setBirthday(birthday.getText().toString());
+                user1.setSex(sex.getText().toString());
+                user1.setUserName(userName.getText().toString());
+                user1.setPortrait(imagePath);
+                user1.updateAll("userAccount=?", userAccount.getText().toString());
+               // Intent intent1=new Intent();
+//                intent1.putExtra("userAccount",userAccount.getText().toString());
+//                intent1.setClass(set_user_information.this,MainActivity.class);
+
+                finish();
+            //    startActivity(intent1);
+            }
+        });
+
+
+
+
+        picture .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-              if(ContextCompat.checkSelfPermission(set_user_information.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
+                if(ContextCompat.checkSelfPermission(set_user_information.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED)
                 {
                     ActivityCompat.requestPermissions(set_user_information.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
                 }
@@ -103,7 +177,7 @@ public class set_user_information extends AppCompatActivity {
     @TargetApi(19)
     private void handleImageOnKitKat(Intent data)
     {
-        String imagePath=null;
+        imagePath=null;
         Uri uri=data.getData();
         if(DocumentsContract.isDocumentUri(this,uri))
         {
