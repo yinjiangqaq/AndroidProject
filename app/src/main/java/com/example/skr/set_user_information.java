@@ -51,6 +51,7 @@ public class set_user_information extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Intent intent=getIntent();
+
         setContentView(R.layout.set_user_information);
         picture=(ImageView)findViewById(R.id.picture);
         Button button=(Button)findViewById(R.id.save);
@@ -63,8 +64,8 @@ public class set_user_information extends AppCompatActivity {
         userName=(EditText)findViewById(R.id.userName);
         sex=(EditText) findViewById(R.id.sex);
         save=(Button)findViewById(R.id.save);
-        userAccount.setText((String)MyApplication.infoMap.get("userAccount"));
-
+       // userAccount.setText((String)MyApplication.infoMap.get("userAccount"));
+        userAccount.setText(intent.getStringExtra("userAccount"));
 //        userAccount.setText(intent.getStringExtra("userAccount"));
 
         Log.d("set_user_info", "infoMap.get('userAccount'):"+MyApplication.infoMap.get("userAccount"));
