@@ -18,12 +18,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ldoublem.thumbUplib.ThumbUpView;
+import com.xuexiang.xui.widget.toast.XToast;
 
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class detail extends AppCompatActivity {
     private List<comment> commentList = new ArrayList<>();
@@ -37,6 +39,8 @@ public class detail extends AppCompatActivity {
     TextView postContent;
     TextView postTime;
     ImageView userPortrait;
+    TextView commentText;
+    private boolean lock=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +79,7 @@ public class detail extends AppCompatActivity {
         postTime =(TextView) findViewById(R.id.post_user_time);
         postTitle =(TextView) findViewById(R.id.post_title) ;
         userPortrait =(ImageView)findViewById(R.id.post_user_head) ;
+        commentText =(TextView) findViewById(R.id.message_card_topic_replied_detail);
         initComment();
         super.onStart();
       //  RecyclerView recyclerView = (RecyclerView) findViewById(R.id.Comment);
@@ -82,7 +87,46 @@ public class detail extends AppCompatActivity {
        // SnackAdapter adapter = new SnackAdapter(snackList);
        // commentAdapter adapter = new commentAdapter(commentList);
        //recyclerView.setAdapter(adapter);
+        Button submmit = (Button)findViewById(R.id.sub_comment);
+        submmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(lock){
+                    //do nothing
+                }
+                else{
+                    if(commentText.getText().toString().trim().isEmpty()){
+                        XToast.warning(detail.this,"评论不能为空").show();
+                    }
+                    else {
+                        lock=true;
+                        //存储帖子，页面跳转
+                     String userAccount = (String) MyApplication.infoMap.get("userAccount");
+//                        post myNewPost = new post();
+//                        myNewPost.setPost_id(UUID.randomUUID().toString());
+//                        myNewPost.setUserAccount(userAccount);                           //此处要改
+//                        myNewPost.setPost_title(posting_title.getText().toString());
+//                        myNewPost.setPost_content(posting_content.getContentText());
+//                        myNewPost.setPost_image(posting_imagePath);                                    //此处要改
+//                        myNewPost.setPost_time("2020/1/1");                             //此处要改
+//                        myNewPost.save();
+           comment comment = new comment();
+            comment.setComment_content(commentText.getText().toString());
+             comment.setComment_id(UUID.randomUUID().toString());
+            comment.setPost_id(post_id);
+            comment.setUserAccount(userAccount);
+            comment.setComment_time("2020/1/1");
+            comment.save();
+            XToast.success(detail.this,"评论成功").show();
+            commentText.setText("");
+            lock=false;
+            onStart();
 
+
+                    }
+                }
+            }
+        });
 
         comAdapter adapter = new comAdapter(detail.this,R.layout.comment_item,commentList);
         UnScrollListView  unScrollListView= (UnScrollListView) findViewById(R.id.Comment);
@@ -96,6 +140,7 @@ public class detail extends AppCompatActivity {
 //            Comment.setComment_time("2019-11-20");
 //            commentList.add(Comment);
 //        }
+        //在数据库里找到对应的post和user，然后把他们的信息输出来
 posts = DataSupport.where("post_id=?",post_id).find(post.class);
 
 
