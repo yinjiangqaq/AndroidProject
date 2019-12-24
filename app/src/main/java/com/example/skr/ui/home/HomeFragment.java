@@ -35,11 +35,10 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-private List<snack> snackList = new ArrayList<>();
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+    private List<snack> snackList = new ArrayList<>();
+
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         setHasOptionsMenu(true);
         //定义一个悬浮可拖动按钮
@@ -67,8 +66,8 @@ private List<snack> snackList = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));//一定要加manager
         SnackAdapter adapter = new SnackAdapter(snackList);
         recyclerView.setAdapter(adapter);
-
     }
+
     private  void initSnack(){
         for(int i =0; i<20;i++){
             snack meet = new snack("beef",R.drawable.beef);

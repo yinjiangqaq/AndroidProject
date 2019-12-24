@@ -10,6 +10,7 @@ import android.annotation.TargetApi;
 import android.content.ContentUris;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,6 +49,7 @@ public class posting extends AppCompatActivity {
     public static final int CHOOSE_PHOTO=2;
     public  static  final  int TAKE_PHOTO=1;
     private Uri imageUri;
+    private String posting_imagePath;
 
     private ClearEditText posting_title;
     private MultiLineEditText posting_content;
@@ -59,6 +61,7 @@ public class posting extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         XUI.initTheme(this);
+        MyApplication.setWindowStatusBarColor(this,R.color.Black);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posting);
 
@@ -133,12 +136,13 @@ public class posting extends AppCompatActivity {
                     else {
                         lock=true;
                         //存储帖子，页面跳转
+                        String userAccount = (String) MyApplication.infoMap.get("userAccount");
                         post myNewPost = new post();
                         myNewPost.setPost_id(UUID.randomUUID().toString());
-                        myNewPost.setUserAccount("20173068");                           //此处要改
+                        myNewPost.setUserAccount(userAccount);                           //此处要改
                         myNewPost.setPost_title(posting_title.getText().toString());
                         myNewPost.setPost_content(posting_content.getContentText());
-//                    myNewPost.setPost_image("");                                    //此处要改
+                        myNewPost.setPost_image(posting_imagePath);                                    //此处要改
                         myNewPost.setPost_time("2020/1/1");                             //此处要改
                         myNewPost.save();
 
@@ -252,6 +256,7 @@ public class posting extends AppCompatActivity {
         if(imagepath!=null)
         {
             Bitmap bitmap = BitmapFactory.decodeFile(imagepath);
+            posting_imagePath=imagepath;
             posting_selectImage.setImageBitmap(bitmap);
         }
         else {
