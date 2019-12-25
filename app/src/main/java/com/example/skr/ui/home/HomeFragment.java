@@ -6,18 +6,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.SearchView;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.skr.MainActivity;
 import com.example.skr.R;
-import com.example.skr.SnackAdapter;
+import com.example.skr.PostAdapter;
 import com.example.skr.post;
 import com.example.skr.posting;
 
@@ -78,7 +72,7 @@ public class HomeFragment extends Fragment {
         super.onStart();
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.snack);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));//一定要加manager
-        SnackAdapter adapter = new SnackAdapter(snackList);
+        PostAdapter adapter = new PostAdapter(snackList,userAccount);
         recyclerView.setAdapter(adapter);
     }
 

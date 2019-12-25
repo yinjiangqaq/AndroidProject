@@ -79,7 +79,7 @@ public class detail extends AppCompatActivity {
         super.onStart();
       //  RecyclerView recyclerView = (RecyclerView) findViewById(R.id.Comment);
        // recyclerView.setLayoutManager(new LinearLayoutManager(this));//一定要加manager
-       // SnackAdapter adapter = new SnackAdapter(snackList);
+       // PostAdapter adapter = new PostAdapter(snackList);
        // commentAdapter adapter = new commentAdapter(commentList);
        //recyclerView.setAdapter(adapter);
 
