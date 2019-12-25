@@ -6,5 +6,6 @@
         <item name="colorPrimary">@color/xui_config_color_main_theme</item>
         <item name="colorPrimaryDark">@color/Black</item>
 
+
     </style>
 </resources>

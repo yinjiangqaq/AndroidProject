@@ -40,6 +40,7 @@ public class detail extends AppCompatActivity {
     TextView postTime;
     ImageView userPortrait;
     TextView commentText;
+    TextView commentNum ;
     private boolean lock=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -80,7 +81,9 @@ public class detail extends AppCompatActivity {
         postTitle =(TextView) findViewById(R.id.post_title) ;
         userPortrait =(ImageView)findViewById(R.id.post_user_head) ;
         commentText =(TextView) findViewById(R.id.message_card_topic_replied_detail);
+        commentNum =(TextView) findViewById(R.id.commentNum);
          initComment();
+         commentNum.setText(commentList.size()+"条评论");
         super.onStart();
       //  RecyclerView recyclerView = (RecyclerView) findViewById(R.id.Comment);
        // recyclerView.setLayoutManager(new LinearLayoutManager(this));//一定要加manager

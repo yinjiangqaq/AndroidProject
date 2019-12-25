@@ -10,132 +10,154 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fillViewport="true"
-        android:layout_weight="8"
+       android:layout_weight="1"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/backgroundGray">
 
             <ImageView
                 android:id="@+id/post_image"
                 android:layout_width="match_parent"
-                android:layout_height="235dp"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_height="wrap_content"
+                android:maxHeight="250dp"
                 android:background="@drawable/bg_border"
                 android:src="@drawable/beef" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal"
-                android:id="@+id/message_card_user">
-
-                <!--        <ImageView-->
-                <!--            android:id="@+id/message_card_user_head"-->
-                <!--            android:layout_width="36dp"-->
-                <!--            android:layout_height="36dp"-->
-                <!--            android:layout_marginLeft="10dp"-->
-                <!--            android:scaleType="centerCrop"-->
-                <!--            android:adjustViewBounds="true"-->
-                <!--            android:layout_gravity="center_vertical"-->
-                <!--            android:src="@drawable/ima_2"/>-->
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/post_user_head"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginLeft="10dp"
-                    android:scaleType="centerCrop"
-                    android:adjustViewBounds="true"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/ima_2"
-                    app:riv_oval="true"/>
-
+                android:orientation="vertical"
+                android:background="@drawable/frame_line2">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:orientation="vertical">
+                    android:layout_margin="5dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/message_card_user">
+
+                    <!--        <ImageView-->
+                    <!--            android:id="@+id/message_card_user_head"-->
+                    <!--            android:layout_width="36dp"-->
+                    <!--            android:layout_height="36dp"-->
+                    <!--            android:layout_marginLeft="10dp"-->
+                    <!--            android:scaleType="centerCrop"-->
+                    <!--            android:adjustViewBounds="true"-->
+                    <!--            android:layout_gravity="center_vertical"-->
+                    <!--            android:src="@drawable/ima_2"/>-->
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/post_user_head"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="centerCrop"
+                        android:adjustViewBounds="true"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ima_2"
+                        app:riv_oval="true"/>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/post_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="1dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:textSize="18dp"
+                            android:textColor="#000000"
+                            android:textAllCaps="false"
+                            android:text="My name"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            />
+                        <TextView
+                            android:id="@+id/post_user_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="1dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="24dp"
+                            android:gravity="center_vertical"
+                            android:textSize="13dp"
+                            android:textColor="#A9A9A9"
+                            android:textAllCaps="false"
+                            android:text="Time"
+                            android:singleLine="true"
+                            android:ellipsize="end"
+                            />
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/post_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="标题"
+                    android:textColor="#000000"
+                    android:textAlignment="center"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/post_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="纳税负担饭卡手动阀撒飞机喀什见附件是的解放昆仑山搭街坊洒进房间的实际发生纠纷上来就发士大夫啊第三范式"
+
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/post_user_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="1dp"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:textSize="18dp"
-                        android:textColor="#000000"
-                        android:textAllCaps="false"
-                        android:text="My name"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        />
-                    <TextView
-                        android:id="@+id/post_user_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="1dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginRight="24dp"
-                        android:gravity="center_vertical"
-                        android:textSize="13dp"
-                        android:textColor="#A9A9A9"
-                        android:textAllCaps="false"
-                        android:text="Time"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        />
+                        android:layout_weight="1" />
+
+                    <com.ldoublem.thumbUplib.ThumbUpView
+                        android:id="@+id/like"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        app:cracksColor="#33475f"
+                        app:edgeColor="@color/red"
+                        app:fillColor="@color/red"
+                        app:unlikeType="1" />
+
 
                 </LinearLayout>
 
-
-
-
             </LinearLayout>
-            <TextView
-                android:id="@+id/post_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="标题"
-                android:textColor="#000000"
-                android:textAlignment="center"
-                android:textSize="20dp" />
 
             <TextView
-                android:id="@+id/post_content"
+                android:id="@+id/commentNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="纳税负担饭卡手动阀撒飞机喀什见附件是的解放昆仑山搭街坊洒进房间的实际发生纠纷上来就发士大夫啊第三范式"
-
-                android:textSize="16dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <com.ldoublem.thumbUplib.ThumbUpView
-                    android:id="@+id/like"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="15dp"
-                    app:cracksColor="#33475f"
-                    app:edgeColor="@color/red"
-                    app:fillColor="@color/red"
-                    app:unlikeType="1" />
+                android:layout_margin="10dp"
+                android:text="0条评论"/>
 
 
-            </LinearLayout>
 
             <com.example.skr.UnScrollListView
                 android:id="@+id/Comment"
@@ -144,11 +166,13 @@
 
             </com.example.skr.UnScrollListView>
         </LinearLayout>
+
+
     </com.example.skr.MyScrollView>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_weight="2"
+
         android:layout_gravity="bottom"
         android:orientation="vertical"
         android:background="@drawable/blue_frame"
@@ -171,7 +195,7 @@
                 android:layout_weight="9.5"
                 android:layout_gravity="center_vertical"
                 android:background="@null"
-                android:textSize="25dp"
+                android:textSize="23dp"
                 android:textColor="#000000"
                 android:textAllCaps="false"
                 android:hint="请输入你的评论"
@@ -180,7 +204,8 @@
             <Button
                 android:id="@+id/sub_comment"
                 android:layout_width="70dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:layout_weight="0.5"
                 android:textSize="16dp"
                 android:text="提交"
