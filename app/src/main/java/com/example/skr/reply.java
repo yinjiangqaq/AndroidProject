@@ -1,6 +1,8 @@
 package com.example.skr;
 
-public class reply {
+import org.litepal.crud.DataSupport;
+
+public class reply extends DataSupport {
     private  String  comment_id;//回复的那个评论的id
 
     private  String userAccount;//回复评论的用户的账户

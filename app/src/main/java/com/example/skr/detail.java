@@ -115,7 +115,7 @@ public class detail extends AppCompatActivity {
              comment.setComment_id(UUID.randomUUID().toString());
             comment.setPost_id(post_id);
             comment.setUserAccount(userAccount);//操作人的
-            comment.setComment_time("2020/1/1");
+            comment.setComment_time(MyApplication.getNowTime());
             comment.save();
             XToast.success(detail.this,"评论成功").show();
             commentText.setText("");
@@ -128,7 +128,7 @@ public class detail extends AppCompatActivity {
             }
         });
 
-        comAdapter adapter = new comAdapter(detail.this,R.layout.comment_item,commentList);
+        comAdapter adapter = new comAdapter(detail.this,R.layout.comment_item,commentList,userAccount);//把操作人的userAccount传进Adapter
         UnScrollListView  unScrollListView= (UnScrollListView) findViewById(R.id.Comment);
         unScrollListView.setAdapter(adapter);
 

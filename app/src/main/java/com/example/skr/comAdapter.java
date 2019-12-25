@@ -23,9 +23,11 @@ import java.util.List;
 public class comAdapter extends ArrayAdapter<comment> {
     private int resourceId;
     private  List<user> commentUser;
-    public comAdapter(Context context, int textViewResourceId, List<comment> objects) {
+    private  String userAccount;//操作人
+    public comAdapter(Context context, int textViewResourceId, List<comment> objects,String useraccount) {
         super(context, textViewResourceId, objects);
         resourceId = textViewResourceId;
+        this.userAccount=useraccount;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -65,7 +67,7 @@ public class comAdapter extends ArrayAdapter<comment> {
             public void onClick(View view) {
 
                 Intent intent = new Intent();
-                intent.putExtra("userAccount",comment.getUserAccount());
+                intent.putExtra("userAccount",userAccount);
                 intent.putExtra("comment_id",comment.getComment_id());
                 intent.setClass(view.getContext(),replyTo.class);
                 view.getContext().startActivity(intent);
