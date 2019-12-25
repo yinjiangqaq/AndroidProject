@@ -81,7 +81,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final post mpost = mpostList.get(position);
-        String home_post_id = mpost.getPost_id();
+        final String home_post_id = mpost.getPost_id();
 
         //获得发帖人user信息
         String home_post_userAccount = mpost.getUserAccount();
@@ -111,8 +111,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("post_id",mpost.getPost_id());
+                intent.setClass(v.getContext(),detail.class);
+                intent.putExtra("post_id",home_post_id);
                 intent.putExtra("userAccount",userAccount);
+                Log.d("postAdapter", "post_id : "+home_post_id);
+                Log.d("postAdapter", "userAccount : "+userAccount);
                 v.getContext().startActivity(intent);
             }
         });
