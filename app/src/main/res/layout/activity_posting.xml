@@ -83,6 +83,13 @@
         android:text="发布"/>
 
 
+<!--    <com.xuexiang.xui.widget.layout.XUILinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        app:xui_radius="20dp"-->
+<!--        />-->
+
 
 
 

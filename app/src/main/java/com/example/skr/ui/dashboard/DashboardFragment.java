@@ -5,19 +5,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.skr.MainActivity;
 import com.example.skr.R;
-import com.example.skr.SnackAdapter;
+import com.example.skr.PostAdapter;
 import com.example.skr.post;
 
 
@@ -53,7 +50,7 @@ public class DashboardFragment extends Fragment {
         super.onStart();
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.ranking);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));//一定要加manager
-        SnackAdapter adapter = new SnackAdapter(snackList);
+        PostAdapter adapter = new PostAdapter(snackList,userAccount);
         recyclerView.setAdapter(adapter);
     }
     private  void initSnack(){

@@ -13,6 +13,7 @@
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible">
+
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/appIcon"
             android:layout_width="80dp"
