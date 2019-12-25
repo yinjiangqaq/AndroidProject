@@ -19,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -132,7 +133,7 @@ public class posting extends AppCompatActivity {
                     //do nothing
                 }
                 else{
-                    if(posting_title.getText().toString().trim().isEmpty()||posting_content.isEmpty()){
+                    if(posting_title.getText().toString().trim().isEmpty()||posting_content.isEmpty()|| TextUtils.isEmpty(posting_imagePath)){
                         XToast.warning(posting.this,"请完善信息").show();
                     }
                     else {
