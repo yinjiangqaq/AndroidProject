@@ -3,6 +3,7 @@ package com.example.skr.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +26,7 @@ import com.example.skr.posting;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.xuexiang.xui.widget.toast.XToast;
 
 import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
@@ -34,9 +36,11 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     String userAccount;
+
     private HomeViewModel homeViewModel;
   //  private List<snack> snackList = new ArrayList<>();
     private List<post> snackList = new ArrayList<>();
+    private List<post> searchList = new ArrayList<>();
     public void onAttach(Context context) {
         super.onAttach(context);
         userAccount = ((MainActivity)getActivity()).getUseraccount();
@@ -47,7 +51,6 @@ public class HomeFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         setHasOptionsMenu(true);
         Connector.getDatabase();
-
         //定义一个悬浮可拖动按钮
         final FloatingActionButton fab =  root.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +64,6 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
         return root;
     }
 
@@ -78,29 +80,42 @@ public class HomeFragment extends Fragment {
     }
 
     private  void initSnack(){
-//        for(int i =0; i<20;i++){
-//            snack meet = new snack("beef",R.drawable.beef);
-//            snackList.add(meet);
-//
-//        }
-        snackList= DataSupport.findAll(post.class);
-
+        if (searchList.size()==0||searchList==null){
+            snackList= DataSupport.findAll(post.class);
+        }
+        else {
+            snackList=searchList;
+        }
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-
         inflater.inflate(R.menu.menu_main,menu);
         inflater.inflate(R.menu.search,menu);
-        SearchView sv = (SearchView) menu.findItem(R.id.search).getActionView();
+        final SearchView sv = (SearchView) menu.findItem(R.id.search).getActionView();
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                if (TextUtils.isEmpty(s)){
+                    XToast.warning(getActivity(),"请完善输入信息").show();
+                }else {
+                    Connector.getDatabase();
+                    searchList = DataSupport.where("post_title like ?","%"+s+"%").find(post.class);
+                    if (searchList.size()==0||searchList==null){
+                        XToast.info(getActivity(),"查无匹配").show();
+                    }else {
+                        onStart();
+                    }
+                }
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
+                if (TextUtils.isEmpty(s)){
+                    searchList.clear();
+                    onStart();
+                }
                 return false;
             }
         });
