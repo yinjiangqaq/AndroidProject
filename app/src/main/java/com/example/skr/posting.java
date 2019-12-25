@@ -50,7 +50,7 @@ public class posting extends AppCompatActivity {
     public  static  final  int TAKE_PHOTO=1;
     private Uri imageUri;
     private String posting_imagePath;
-
+    private String userAccount;//操作人
     private ClearEditText posting_title;
     private MultiLineEditText posting_content;
     private ImageView posting_selectImageButton,posting_selectImage;
@@ -63,6 +63,8 @@ public class posting extends AppCompatActivity {
         XUI.initTheme(this);
         MyApplication.setWindowStatusBarColor(this,R.color.Black);
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        userAccount= intent.getStringExtra("userAccount");//操作本人的
         setContentView(R.layout.activity_posting);
 
         Connector.getDatabase();
@@ -136,7 +138,7 @@ public class posting extends AppCompatActivity {
                     else {
                         lock=true;
                         //存储帖子，页面跳转
-                        String userAccount = (String) MyApplication.infoMap.get("userAccount");
+//                        String userAccount = (String) MyApplication.infoMap.get("userAccount");
                         post myNewPost = new post();
                         myNewPost.setPost_id(UUID.randomUUID().toString());
                         myNewPost.setUserAccount(userAccount);

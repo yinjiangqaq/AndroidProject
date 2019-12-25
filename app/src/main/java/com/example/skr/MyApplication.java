@@ -19,7 +19,7 @@ import java.util.HashMap;
 
 public class MyApplication extends Application {
 
-    public static HashMap<String , Object> infoMap = new HashMap<String, Object>();
+    //public static HashMap<String , Object> infoMap = new HashMap<String, Object>();
 
     private static MyApplication mApp;
 

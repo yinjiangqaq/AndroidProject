@@ -29,10 +29,10 @@ import java.util.UUID;
 
 public class detail extends AppCompatActivity {
     private List<comment> commentList = new ArrayList<>();
-    private  String userAccouont;
+    private  String userAccount;//操作人的userAccount
     private  String post_id;
     private  List <post> posts;
-    private  List<user> postUser;
+    private  List<user> postUser;//作者的
     ImageView postImage;
     TextView postuserName;
     TextView postTitle;
@@ -71,7 +71,7 @@ public class detail extends AppCompatActivity {
     public void onStart() {
         Connector.getDatabase();
         Intent intent = getIntent();
-        userAccouont= intent.getStringExtra("userAccount");
+        userAccount= intent.getStringExtra("userAccount");//操作本人的
         post_id = intent.getStringExtra("post_id");
         postImage = (ImageView) findViewById(R.id.post_image);
         postuserName = (TextView)findViewById(R.id.post_user_name);
@@ -80,7 +80,7 @@ public class detail extends AppCompatActivity {
         postTitle =(TextView) findViewById(R.id.post_title) ;
         userPortrait =(ImageView)findViewById(R.id.post_user_head) ;
         commentText =(TextView) findViewById(R.id.message_card_topic_replied_detail);
-        initComment();
+         initComment();
         super.onStart();
       //  RecyclerView recyclerView = (RecyclerView) findViewById(R.id.Comment);
        // recyclerView.setLayoutManager(new LinearLayoutManager(this));//一定要加manager
@@ -101,7 +101,7 @@ public class detail extends AppCompatActivity {
                     else {
                         lock=true;
                         //存储帖子，页面跳转
-                     String userAccount = (String) MyApplication.infoMap.get("userAccount");
+                   //  String userAccount_operator = (String) MyApplication.infoMap.get("userAccount");//通过全局变量拿本人操作者
 //                        post myNewPost = new post();
 //                        myNewPost.setPost_id(UUID.randomUUID().toString());
 //                        myNewPost.setUserAccount(userAccount);                           //此处要改
@@ -114,7 +114,7 @@ public class detail extends AppCompatActivity {
             comment.setComment_content(commentText.getText().toString());
              comment.setComment_id(UUID.randomUUID().toString());
             comment.setPost_id(post_id);
-            comment.setUserAccount(userAccount);
+            comment.setUserAccount(userAccount);//操作人的
             comment.setComment_time("2020/1/1");
             comment.save();
             XToast.success(detail.this,"评论成功").show();
@@ -150,7 +150,7 @@ String post_title = post.getPost_title();
 String post_content = post.getPost_content();
 String post_time  = post.getPost_time();
 String post_userAccount = post.getUserAccount();
-postUser = DataSupport.where("userAccount=?",post_userAccount).find(user.class);
+postUser = DataSupport.where("userAccount=?",post_userAccount).find(user.class);//作者的
 user postuser = postUser.get(0);
 String post_userName = postuser.getUserName();
 String post_userPortrait = postuser.getPortrait();

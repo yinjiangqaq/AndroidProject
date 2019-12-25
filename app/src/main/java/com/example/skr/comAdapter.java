@@ -31,7 +31,7 @@ public class comAdapter extends ArrayAdapter<comment> {
     public View getView(int position, View convertView, ViewGroup parent) {
         //拿到评论的数据，并返回打印在评论组件上
         Connector.getDatabase();
-        comment comment = getItem(position);
+        final comment comment = getItem(position);
         View view;
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
@@ -65,6 +65,8 @@ public class comAdapter extends ArrayAdapter<comment> {
             public void onClick(View view) {
 
                 Intent intent = new Intent();
+                intent.putExtra("userAccount",comment.getUserAccount());
+                intent.putExtra("comment_id",comment.getComment_id());
                 intent.setClass(view.getContext(),replyTo.class);
                 view.getContext().startActivity(intent);
             }

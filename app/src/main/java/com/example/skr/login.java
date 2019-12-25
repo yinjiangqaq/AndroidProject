@@ -169,7 +169,7 @@ public class login extends AppCompatActivity{
 //                    signIn_tip.setVisibility(View.VISIBLE);
 
 
-                    MyApplication.infoMap.put("userAccount",signIn_account.getText().toString());
+//                    MyApplication.infoMap.put("userAccount",signIn_account.getText().toString());
 
 //                    signIn_signInButton.postDelayed(new Runnable() {
 //                        @Override
@@ -240,7 +240,7 @@ public class login extends AppCompatActivity{
 //                signUp_tip.setTextColor(this.getResources().getColor(R.color.Green));
 //                signUp_tip.setVisibility(View.VISIBLE);
 
-                MyApplication.infoMap.put("userAccount",signIn_account.getText().toString());
+//                MyApplication.infoMap.put("userAccount",signIn_account.getText().toString());
 
 //                signUp_signUpButton.postDelayed(new Runnable() {
 //                    @Override

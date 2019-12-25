@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment {
                         .setAction("Action", null).show();
                 //添加跳转
                 Intent intent = new Intent(getActivity(),posting.class);
+                intent.putExtra("userAccount",userAccount);
                 startActivity(intent);
             }
         });
