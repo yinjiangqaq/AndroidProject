@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">skr</string>
+    <string name="app_name">食刻</string>
     <string name="title_home">首页</string>
     <string name="title_dashboard">排行榜</string>
     <string name="title_notifications">我的</string>
