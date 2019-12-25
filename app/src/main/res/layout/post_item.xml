@@ -125,7 +125,7 @@
                 android:src="@drawable/fire" />
 
             <TextView
-                android:id="@+id/home_post_hotNumber"
+                android:id="@+id/home_post_collect_num"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:maxWidth="50dp"

@@ -22,10 +22,12 @@ import org.litepal.crud.DataSupport;
 import org.litepal.tablemanager.Connector;
 
 import java.util.List;
+import java.util.UUID;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     private List<post> mpostList;
+    private List<collect> collectList;
     String userAccount;//操作人的userAccount
 
     static class ViewHolder extends  RecyclerView.ViewHolder{
@@ -37,7 +39,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         TextView home_post_title
                 ,home_post_user_name
                 ,home_post_time
-                ,home_post_hotNumber;
+                ,home_post_collect_num;
 
         public    ViewHolder(View view){
             super(view);
@@ -49,8 +51,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             home_post_title = (TextView) view.findViewById(R.id.home_post_title);
             home_post_user_name = (TextView) view.findViewById(R.id.home_post_user_name);
             home_post_time = (TextView) view.findViewById(R.id.home_post_time);
-            home_post_hotNumber = (TextView) view.findViewById(R.id.home_post_hotNumber);
-
+            home_post_collect_num = (TextView) view.findViewById(R.id.home_post_collect_num);
         }
 
     }
@@ -104,9 +105,20 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.home_post_image.setImageBitmap(bitmap);
         holder.home_post_title.setText(mpost.getPost_title());
         holder.home_post_time.setText(mpost.getPost_time());
-        //缺热度和点赞
+        holder.home_post_collect_num.setText(mpost.getPost_collect_num()+"");//收藏数
 
-        //
+        //判断本人是否有收藏过
+        collectList = DataSupport.where("post_id = ? and userAccount = ?",home_post_id,home_post_userAccount).find(collect.class);
+        if (collectList.size()==0||collectList==null){
+            holder.home_post_like_selected.setVisibility(View.GONE);
+            holder.home_post_like_notSelected.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.home_post_like_notSelected.setVisibility(View.GONE);
+            holder.home_post_like_selected.setVisibility(View.VISIBLE);
+        }
+
+        //点击事件
         holder.home_post_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,18 +132,42 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
             }
         });
 
-        //在这里实现snackitem的页面跳转，跳转到详情页面
-//        holder.snackImage.setOnClickListener(new View.OnClickListener() {
+        //收藏
+        holder.home_post_like_notSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.home_post_like_notSelected.setVisibility(View.GONE);
+                holder.home_post_like_selected.setVisibility(View.VISIBLE);
+                XToast.success(v.getContext(),"收藏成功").show();
+                if (collectList.size()==0||collectList==null){
+                    collect newCollect = new collect();
+                    newCollect.setCollect_id(UUID.randomUUID().toString());
+                    newCollect.setPost_id(home_post_id);
+                    newCollect.setUserAccount(userAccount);
+                    newCollect.setCollect_time(MyApplication.getNowTime());
+                    newCollect.save();
+
+                    mpost.setPost_collect_num(mpost.getPost_collect_num()+1);
+                    mpost.updateAll("post_id = ?",home_post_id);
+
+                    holder.home_post_collect_num.setText(mpost.getPost_collect_num()+"");
+
+                }
+                else {
+                    XToast.error(v.getContext(),"出错了！本帖已收藏").show();
+                }
+            }
+        });
+        //取消收藏(未完成)
+//        holder.home_post_like_selected.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent();
-//                intent.setClass(view.getContext(),detail.class);
-//                intent.putExtra("userAccount",Snack.getUserAccount());
-//                intent.putExtra("post_id",Snack.getPost_id());
-//                view.getContext().startActivity(intent);
-//
+//            public void onClick(View v) {
+//                holder.home_post_like_selected.setVisibility(View.GONE);
+//                holder.home_post_like_notSelected.setVisibility(View.VISIBLE);
+//                XToast.success(v.getContext(),"取消收藏成功").show();
 //            }
 //        });
+
     }
 
     @Override

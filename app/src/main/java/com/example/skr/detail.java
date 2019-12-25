@@ -41,32 +41,20 @@ public class detail extends AppCompatActivity {
     ImageView userPortrait;
     TextView commentText;
     TextView commentNum ;
+    ThumbUpView mThumbUpView;
     private boolean lock=false;
+    private post post1;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail);
 
-        ThumbUpView mThumbUpView = (ThumbUpView) findViewById(R.id.like);
+        mThumbUpView = (ThumbUpView) findViewById(R.id.like);
         mThumbUpView.setUnLikeType(ThumbUpView.LikeType.unlike);
 
         mThumbUpView.setCracksColor(Color.rgb(22, 33, 44));
         mThumbUpView.setFillColor(Color.rgb(230,0,0));
         mThumbUpView.setEdgeColor(Color.rgb(33, 3, 219));
-        //判断是否点赞
-        mThumbUpView.setOnThumbUp(new ThumbUpView.OnThumbUp() {
-            @Override
-            public void like(boolean like) {
-                if (like==true){
-                    Toast.makeText(detail.this,"点赞成功",Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(detail.this,"取消点赞", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
-
     }
     @Override
     public void onStart() {
@@ -82,8 +70,47 @@ public class detail extends AppCompatActivity {
         userPortrait =(ImageView)findViewById(R.id.post_user_head) ;
         commentText =(TextView) findViewById(R.id.message_card_topic_replied_detail);
         commentNum =(TextView) findViewById(R.id.commentNum);
-         initComment();
-         commentNum.setText(commentList.size()+"条评论");
+
+        //判断是否曾收藏
+        List<collect> collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
+        if (collectList.size()==0||collectList==null){
+            //未收藏
+        }
+        else {
+            //已收藏
+            mThumbUpView.Like();
+            mThumbUpView.UnLike();
+        }
+
+
+        initComment();
+        commentNum.setText(commentList.size()+"条评论");
+        //判断是否点赞
+        mThumbUpView.setOnThumbUp(new ThumbUpView.OnThumbUp() {
+            @Override
+            public void like(boolean like) {
+                if (like==true){
+                    List<collect> collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
+                    if (collectList.size()==0||collectList==null){
+                        collect newCollect = new collect();
+                        newCollect.setCollect_id(UUID.randomUUID().toString());
+                        newCollect.setPost_id(post_id);
+                        newCollect.setUserAccount(userAccount);
+                        newCollect.setCollect_time(MyApplication.getNowTime());
+                        newCollect.save();
+
+                        post1.setPost_collect_num(post1.getPost_collect_num()+1);
+                        post1.updateAll("post_id = ?",post_id);
+                        XToast.success(detail.this,"收藏成功").show();
+                    }
+                    else {
+                        XToast.error(detail.this,"本帖已收藏").show();
+                    }
+                }else{
+                    Toast.makeText(detail.this,"取消点赞", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         super.onStart();
       //  RecyclerView recyclerView = (RecyclerView) findViewById(R.id.Comment);
        // recyclerView.setLayoutManager(new LinearLayoutManager(this));//一定要加manager
@@ -103,16 +130,6 @@ public class detail extends AppCompatActivity {
                     }
                     else {
                         lock=true;
-                        //存储帖子，页面跳转
-                   //  String userAccount_operator = (String) MyApplication.infoMap.get("userAccount");//通过全局变量拿本人操作者
-//                        post myNewPost = new post();
-//                        myNewPost.setPost_id(UUID.randomUUID().toString());
-//                        myNewPost.setUserAccount(userAccount);                           //此处要改
-//                        myNewPost.setPost_title(posting_title.getText().toString());
-//                        myNewPost.setPost_content(posting_content.getContentText());
-//                        myNewPost.setPost_image(posting_imagePath);                                    //此处要改
-//                        myNewPost.setPost_time("2020/1/1");                             //此处要改
-//                        myNewPost.save();
            comment comment = new comment();
             comment.setComment_content(commentText.getText().toString());
              comment.setComment_id(UUID.randomUUID().toString());
@@ -147,12 +164,12 @@ public class detail extends AppCompatActivity {
 posts = DataSupport.where("post_id=?",post_id).find(post.class);
 
 
-post post=posts.get(0);
-String post_image = post.getPost_image();
-String post_title = post.getPost_title();
-String post_content = post.getPost_content();
-String post_time  = post.getPost_time();
-String post_userAccount = post.getUserAccount();
+        post1=posts.get(0);
+String post_image = post1.getPost_image();
+String post_title = post1.getPost_title();
+String post_content = post1.getPost_content();
+String post_time  = post1.getPost_time();
+String post_userAccount = post1.getUserAccount();
 postUser = DataSupport.where("userAccount=?",post_userAccount).find(user.class);//作者的
 user postuser = postUser.get(0);
 String post_userName = postuser.getUserName();

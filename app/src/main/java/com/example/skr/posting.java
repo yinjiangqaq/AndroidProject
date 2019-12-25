@@ -147,6 +147,7 @@ public class posting extends AppCompatActivity {
                         myNewPost.setPost_content(posting_content.getContentText());
                         myNewPost.setPost_image(posting_imagePath);
                         myNewPost.setPost_time(MyApplication.getNowTime());
+                        myNewPost.setPost_collect_num(0);
                         myNewPost.save();
 
                         XToast.success(posting.this,"发帖成功").show();
