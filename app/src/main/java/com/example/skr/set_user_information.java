@@ -47,40 +47,26 @@ public class set_user_information extends AppCompatActivity {
     EditText userName;
     EditText sex;
     TextView userAccount;
+    String userOpAccount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.set_user_information);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        final Intent intent=getIntent();
-        picture=(ImageView)findViewById(R.id.picture);
-        Button button=(Button)findViewById(R.id.save);
 
         Connector.getDatabase();
         List<user> userList;
-
+        final Intent intent=getIntent();
+        userOpAccount = intent.getStringExtra("userAccount");
+        Log.d("find bug", "set_user_info onstart useropaccount"+userOpAccount);
+        picture=(ImageView)findViewById(R.id.picture);
         userAccount=(TextView) findViewById(R.id.userAccount);
         birthday=(EditText)findViewById(R.id.birthday);
         userName=(EditText)findViewById(R.id.userName);
         sex=(EditText) findViewById(R.id.sex);
         save=(Button)findViewById(R.id.save);
-        // userAccount.setText((String)MyApplication.infoMap.get("userAccount"));
-        userAccount.setText(intent.getStringExtra("userAccount"));
-//        userAccount.setText(intent.getStringExtra("userAccount"));
 
-//        Log.d("set_user_info", "infoMap.get('userAccount'):"+MyApplication.infoMap.get("userAccount"));
-//        Log.d("set_user_info", "userAccount:"+userAccount.getText().toString());
-//        if (TextUtils.isEmpty((String)MyApplication.infoMap.get("userAccount"))){
-//            Log.d("set_user_info", "infoMap.get('userAccount') is null or '' :"+MyApplication.infoMap.get("userAccount"));
-//        }else {
-//            Log.d("set_user_info", "infoMap.get('userAccount') is not null or '' :"+MyApplication.infoMap.get("userAccount"));
-//        }
-
-        userList=DataSupport.where("userAccount=?",userAccount.getText().toString()).find(user.class);
+        userList=DataSupport.where("userAccount=?",userOpAccount).find(user.class);
         final user user=userList.get(0);
         if(user.getBirthday()!=null)
 //        if (!TextUtils.isEmpty(user.getBirthday()))
@@ -89,6 +75,9 @@ public class set_user_information extends AppCompatActivity {
         }
         else
         { }
+        if (user.getUserAccount()!=null){
+            userAccount.setText(user.getUserAccount());
+        }
         if(user.getUserName()!=null)
 //        if (!TextUtils.isEmpty(user.getUserName()))
         {
@@ -103,12 +92,18 @@ public class set_user_information extends AppCompatActivity {
         if(user.getPortrait()!=null)
 //        if (!TextUtils.isEmpty(user.getPortrait()))
         {
-
             Bitmap bitmap = BitmapFactory.decodeFile(user.getPortrait());
             picture.setImageBitmap(bitmap);
         }
         else{}
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+//        picture.setImageBitmap();
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,11 +122,6 @@ public class set_user_information extends AppCompatActivity {
                 //    startActivity(intent1);
             }
         });
-
-
-
-
-
 
         picture .setOnClickListener(new View.OnClickListener() {
             @Override

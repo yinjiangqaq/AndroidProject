@@ -89,18 +89,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         //获得发帖人user信息
         String home_post_userAccount = mpost.getUserAccount();
-        Log.d("find bug", "home_post_userAccount: "+home_post_userAccount);
-//        Connector.getDatabase();
-//        List<user> userList;
-//        userList = DataSupport.where("userAccount = ?",home_post_userAccount).find(user.class);
-//        if (userList==null||userList.size()==0){
-//            Log.d("In postAdapter:", "onBindViewHolder: 得不到userList, home_post_userAccount="+home_post_userAccount);
-//        }else {
-//            user pUser = userList.get(0);
-//            Bitmap bitmapFor_home_post_user_head = BitmapFactory.decodeFile(pUser.getPortrait());
-//            holder.home_post_user_head.setImageBitmap(bitmapFor_home_post_user_head);
-//            holder.home_post_user_name.setText(pUser.getUserName());
-//        }
+//        Log.d("find bug", "home_post_userAccount: "+home_post_userAccount);
+        Connector.getDatabase();
+        List<user> userList;
+        userList = DataSupport.where("userAccount = ?",home_post_userAccount).find(user.class);
+        if (userList==null||userList.size()==0){
+            Log.d("In postAdapter:", "onBindViewHolder: 得不到userList, home_post_userAccount="+home_post_userAccount);
+        }else {
+            user pUser = userList.get(0);
+            Bitmap bitmapFor_home_post_user_head = BitmapFactory.decodeFile(pUser.getPortrait());
+            holder.home_post_user_head.setImageBitmap(bitmapFor_home_post_user_head);
+            holder.home_post_user_name.setText(pUser.getUserName());
+        }
 
         //获得帖子信息
         Bitmap bitmap = BitmapFactory.decodeFile(mpost.getPost_image());
