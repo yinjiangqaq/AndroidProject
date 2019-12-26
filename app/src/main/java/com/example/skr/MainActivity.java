@@ -52,11 +52,14 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        Intent intent=getIntent();
-        String userAccount=intent.getStringExtra("userAccount");
+//        // menu should be considered as top level destinations.
 
-        useraccount=userAccount;
+//        Intent intent=getIntent();                                    //因为退出登录和切换账号都是用intent直接切过去，相当于切回login，但是从login登录到mainActivity的时候，并没有执行
+                                                                        //onCreate，而是执行onStart，因为这个页面不是第一次创建的。所以我们要把拿到操作人的这个getIntent操作放在onStart
+                                                                        //里面，不然下次登录还是显示的是之前的用户。并没有拿到新用户的userAccount,因为onCreate不执行
+//        String userAccount=intent.getStringExtra("userAccount");
+//
+//        useraccount=userAccount;
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                 .build();
@@ -65,6 +68,13 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent intent=getIntent();
+        String userAccount=intent.getStringExtra("userAccount");
+        useraccount=userAccount;
+    }
 
     @Override//实现点击两次返回键就退出应用的代码
     public boolean onKeyDown(int keyCode, KeyEvent event) {

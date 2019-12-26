@@ -33,6 +33,7 @@ public class detail extends AppCompatActivity {
     private  String post_id;
     private  List <post> posts;
     private  List<user> postUser;//作者的
+    List<collect> collectList;
     ImageView postImage;
     TextView postuserName;
     TextView postTitle;
@@ -50,6 +51,7 @@ public class detail extends AppCompatActivity {
         setContentView(R.layout.detail);
 
         mThumbUpView = (ThumbUpView) findViewById(R.id.like);
+//        mThumbUpView.setUnLikeType(ThumbUpView.LikeType.unlike);
         mThumbUpView.setUnLikeType(ThumbUpView.LikeType.unlike);
 
         mThumbUpView.setCracksColor(Color.rgb(22, 33, 44));
@@ -72,7 +74,7 @@ public class detail extends AppCompatActivity {
         commentNum =(TextView) findViewById(R.id.commentNum);
 
         //判断是否曾收藏
-        List<collect> collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
+        collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
         if (collectList.size()==0||collectList==null){
             //未收藏
         }
@@ -90,7 +92,7 @@ public class detail extends AppCompatActivity {
             @Override
             public void like(boolean like) {
                 if (like==true){
-                    List<collect> collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
+//                    collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
                     if (collectList.size()==0||collectList==null){
                         collect newCollect = new collect();
                         newCollect.setCollect_id(UUID.randomUUID().toString());
@@ -98,16 +100,27 @@ public class detail extends AppCompatActivity {
                         newCollect.setUserAccount(userAccount);
                         newCollect.setCollect_time(MyApplication.getNowTime());
                         newCollect.save();
+                        collectList.add(newCollect);
 
                         post1.setPost_collect_num(post1.getPost_collect_num()+1);
                         post1.updateAll("post_id = ?",post_id);
-                        XToast.success(detail.this,"收藏成功").show();
+//                        XToast.success(detail.this,"收藏成功").show();
                     }
                     else {
-                        XToast.error(detail.this,"本帖已收藏").show();
+//                        XToast.error(detail.this,"本帖已收藏").show();
                     }
                 }else{
-                    Toast.makeText(detail.this,"取消点赞", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(detail.this,"取消点赞", Toast.LENGTH_SHORT).show();
+                    if (collectList.size()==0||collectList==null){
+
+                    }
+                    else {
+                        collect newCollect = collectList.get(0);
+                        DataSupport.deleteAll(collect.class ,"collect_id = ?",newCollect.getCollect_id());
+                        collectList.clear();
+                        post1.setPost_collect_num(post1.getPost_collect_num()-1);
+                        post1.updateAll("post_id = ?",post_id);
+                    }
                 }
             }
         });

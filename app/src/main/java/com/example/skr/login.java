@@ -278,7 +278,7 @@ public class login extends AppCompatActivity{
             user me = new user();
             me.setUserAccount("20173068");
             me.setPassword("123456");
-            me.setBirthday("2000/01/01");
+            me.setBirthday("2000-01-01");
             me.setSex("男");
             me.setUserName("初始账号");
             me.setUserIntro("我的个性签名");

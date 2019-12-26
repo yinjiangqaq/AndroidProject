@@ -136,9 +136,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         holder.home_post_like_notSelected.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 holder.home_post_like_notSelected.setVisibility(View.GONE);
                 holder.home_post_like_selected.setVisibility(View.VISIBLE);
-                XToast.success(v.getContext(),"收藏成功").show();
                 if (collectList.size()==0||collectList==null){
                     collect newCollect = new collect();
                     newCollect.setCollect_id(UUID.randomUUID().toString());
@@ -146,27 +146,44 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                     newCollect.setUserAccount(userAccount);
                     newCollect.setCollect_time(MyApplication.getNowTime());
                     newCollect.save();
+                    collectList.add(newCollect);
 
                     mpost.setPost_collect_num(mpost.getPost_collect_num()+1);
                     mpost.updateAll("post_id = ?",home_post_id);
 
                     holder.home_post_collect_num.setText(mpost.getPost_collect_num()+"");
 
+                    XToast.success(v.getContext(),"收藏成功").show();
+
                 }
                 else {
-                    XToast.error(v.getContext(),"出错了！本帖已收藏").show();
+                    XToast.warning(v.getContext(),"请勿频繁操作").show();
                 }
             }
         });
-        //取消收藏(未完成)
-//        holder.home_post_like_selected.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                holder.home_post_like_selected.setVisibility(View.GONE);
-//                holder.home_post_like_notSelected.setVisibility(View.VISIBLE);
-//                XToast.success(v.getContext(),"取消收藏成功").show();
-//            }
-//        });
+
+//        取消收藏
+        holder.home_post_like_selected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                holder.home_post_like_selected.setVisibility(View.GONE);
+                holder.home_post_like_notSelected.setVisibility(View.VISIBLE);
+                if (collectList.size()==0||collectList==null){
+                    XToast.warning(v.getContext(),"请勿频繁操作").show();
+                }
+                else {
+                    collect newCollect = collectList.get(0);
+                    DataSupport.deleteAll(collect.class ,"collect_id = ?",newCollect.getCollect_id());
+                    collectList.clear();
+                    mpost.setPost_collect_num(mpost.getPost_collect_num()-1);
+                    mpost.updateAll("post_id = ?",home_post_id);
+                    holder.home_post_collect_num.setText(mpost.getPost_collect_num()+"");
+
+                    XToast.success(v.getContext(),"取消收藏成功").show();
+                }
+            }
+        });
 
     }
 

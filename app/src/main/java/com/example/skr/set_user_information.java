@@ -50,9 +50,13 @@ public class set_user_information extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Intent intent=getIntent();
-
         setContentView(R.layout.set_user_information);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        final Intent intent=getIntent();
         picture=(ImageView)findViewById(R.id.picture);
         Button button=(Button)findViewById(R.id.save);
 
@@ -64,7 +68,7 @@ public class set_user_information extends AppCompatActivity {
         userName=(EditText)findViewById(R.id.userName);
         sex=(EditText) findViewById(R.id.sex);
         save=(Button)findViewById(R.id.save);
-       // userAccount.setText((String)MyApplication.infoMap.get("userAccount"));
+        // userAccount.setText((String)MyApplication.infoMap.get("userAccount"));
         userAccount.setText(intent.getStringExtra("userAccount"));
 //        userAccount.setText(intent.getStringExtra("userAccount"));
 
@@ -79,21 +83,25 @@ public class set_user_information extends AppCompatActivity {
         userList=DataSupport.where("userAccount=?",userAccount.getText().toString()).find(user.class);
         final user user=userList.get(0);
         if(user.getBirthday()!=null)
+//        if (!TextUtils.isEmpty(user.getBirthday()))
         {
             birthday.setText(user.getBirthday());
         }
         else
         { }
         if(user.getUserName()!=null)
+//        if (!TextUtils.isEmpty(user.getUserName()))
         {
             userName.setText(user.getUserName());
         }
         else {}
         if(user.getSex()!=null)
+//        if (!TextUtils.isEmpty(user.getSex()))
         {
             sex.setText(user.getSex());
         }else {}
         if(user.getPortrait()!=null)
+//        if (!TextUtils.isEmpty(user.getPortrait()))
         {
 
             Bitmap bitmap = BitmapFactory.decodeFile(user.getPortrait());
@@ -111,14 +119,16 @@ public class set_user_information extends AppCompatActivity {
                 user1.setUserName(userName.getText().toString());
                 user1.setPortrait(imagePath);
                 user1.updateAll("userAccount=?", userAccount.getText().toString());
-               // Intent intent1=new Intent();
+                // Intent intent1=new Intent();
 //                intent1.putExtra("userAccount",userAccount.getText().toString());
 //                intent1.setClass(set_user_information.this,MainActivity.class);
 
                 finish();
-            //    startActivity(intent1);
+                //    startActivity(intent1);
             }
         });
+
+
 
 
 
@@ -136,8 +146,8 @@ public class set_user_information extends AppCompatActivity {
                 }
             }
         });
-    }
 
+    }
 
     private void openAlbum()
     {

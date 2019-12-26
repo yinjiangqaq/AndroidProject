@@ -64,8 +64,6 @@ public class posting extends AppCompatActivity {
         XUI.initTheme(this);
         MyApplication.setWindowStatusBarColor(this,R.color.Black);
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        userAccount= intent.getStringExtra("userAccount");//操作本人的
         setContentView(R.layout.activity_posting);
 
         Connector.getDatabase();
@@ -164,6 +162,15 @@ public class posting extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Connector.getDatabase();
+        Intent intent = getIntent();
+        userAccount= intent.getStringExtra("userAccount");//操作本人的
     }
 
     private void openAlbum()
