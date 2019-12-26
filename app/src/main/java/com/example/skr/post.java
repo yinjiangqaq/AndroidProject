@@ -9,6 +9,7 @@ public class post extends DataSupport {
     private  String post_content;//帖子内容
     private  String post_image;//帖子照片
     private  String post_time;//帖子发布时间
+    private int post_collect_num;//收藏数
 
     public String getUserAccount() {
         return userAccount;
@@ -34,6 +35,10 @@ public class post extends DataSupport {
         return post_time;
     }
 
+    public int getPost_collect_num() {
+        return post_collect_num;
+    }
+
     public void setUserAccount(String userAccount) {
         this.userAccount = userAccount;
     }
@@ -56,6 +61,10 @@ public class post extends DataSupport {
 
     public void setPost_title(String post_title) {
         this.post_title = post_title;
+    }
+
+    public void setPost_collect_num(int post_collect_num) {
+        this.post_collect_num = post_collect_num;
     }
 
 }

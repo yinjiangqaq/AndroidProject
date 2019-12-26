@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.skr.MainActivity;
 import com.example.skr.MyApplication;
+import com.example.skr.MyPost;
 import com.example.skr.R;
 import com.example.skr.fan;
 import com.example.skr.follow;
@@ -58,13 +60,17 @@ public class NotificationsFragment extends Fragment {
     List<com.example.skr.fan> fans;
     List<com.example.skr.follow>follows;
     List<com.example.skr.post>faties;
-    @Override
 
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        userAccount = ((MainActivity)getActivity()).getUseraccount();
+    LinearLayout setinformation;
+    LinearLayout set;
 
-    }
+//    @Override
+
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        userAccount = ((MainActivity)getActivity()).getUseraccount();
+//    }
+
     private void requestWritePermission(){
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
@@ -82,36 +88,15 @@ public class NotificationsFragment extends Fragment {
 
 
 
-        final LinearLayout setinformation = root.findViewById(R.id.set_user_information);
-        final LinearLayout set=root.findViewById(R.id.set);
+        setinformation = root.findViewById(R.id.set_user_information);
+        set=root.findViewById(R.id.set);
         fan=root.findViewById(R.id.fan);
         follow=root.findViewById(R.id.follow);
         fatie=root.findViewById(R.id.fatie);
         userName=root.findViewById(R.id.userName);
         userAccount1=root.findViewById(R.id.userAccount);
-        userAccount1.setText(userAccount);
         picture=root.findViewById(R.id.image);
 
-
-
-        set.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.setClass(getActivity(), com.example.skr.set.class);
-
-                startActivity(intent);
-            }
-        });
-        setinformation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent();
-                intent.putExtra("userAccount",userAccount);
-                intent.setClass(getActivity(), set_user_information.class);
-                startActivity(intent);
-            }
-        });
         notificationsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
@@ -121,9 +106,17 @@ public class NotificationsFragment extends Fragment {
         return root;
     }
 
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//    }
+
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
+        userAccount = ((MainActivity)getActivity()).getUseraccount();
+        Log.d("find bug", "NotificationsFragment onresume: userAccount"+userAccount);
 
         userList= DataSupport.where("userAccount=?",userAccount).find(user.class);
         fans= DataSupport.where("userAccount=?",userAccount).find(fan.class);
@@ -152,6 +145,9 @@ public class NotificationsFragment extends Fragment {
         {
             userName.setText(user.getUserName());
         }else{}
+        if (user.getUserAccount()!=null){
+            userAccount1.setText(user.getUserIntro());
+        }
         if(user.getPortrait()!=null)
         {
             Bitmap bitmap = BitmapFactory.decodeFile(user.getPortrait());
@@ -159,7 +155,33 @@ public class NotificationsFragment extends Fragment {
         }
         else{}
 
+        set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.setClass(getActivity(), com.example.skr.set.class);
 
+                startActivity(intent);
+            }
+        });
+        setinformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent();
+                intent.putExtra("userAccount",userAccount);
+                intent.setClass(getActivity(), set_user_information.class);
+                startActivity(intent);
+            }
+        });
+        fatie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("userAccount",userAccount);
+                intent.setClass(getActivity(), MyPost.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

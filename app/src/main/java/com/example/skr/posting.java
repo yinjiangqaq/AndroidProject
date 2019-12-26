@@ -64,11 +64,11 @@ public class posting extends AppCompatActivity {
         XUI.initTheme(this);
         MyApplication.setWindowStatusBarColor(this,R.color.Black);
         super.onCreate(savedInstanceState);
-        Intent intent = getIntent();
-        userAccount= intent.getStringExtra("userAccount");//操作本人的
         setContentView(R.layout.activity_posting);
 
         Connector.getDatabase();
+        Intent intent = getIntent();
+        userAccount= intent.getStringExtra("userAccount");//操作本人的
 
         posting_title = (ClearEditText) findViewById(R.id.posting_title);
         posting_content = (MultiLineEditText) findViewById(R.id.posting_content);
@@ -147,6 +147,7 @@ public class posting extends AppCompatActivity {
                         myNewPost.setPost_content(posting_content.getContentText());
                         myNewPost.setPost_image(posting_imagePath);
                         myNewPost.setPost_time(MyApplication.getNowTime());
+                        myNewPost.setPost_collect_num(0);
                         myNewPost.save();
 
                         XToast.success(posting.this,"发帖成功").show();
@@ -158,11 +159,21 @@ public class posting extends AppCompatActivity {
                             }
                         },500);
 
+//                        Intent intent = new Intent();
+//                        intent.setClass(posting.this,MainActivity.class);
+//                        intent.putExtra("userAccount",userAccount);
+//                        startActivity(intent);
+
                     }
                 }
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     private void openAlbum()

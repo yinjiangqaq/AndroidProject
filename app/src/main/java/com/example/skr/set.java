@@ -20,6 +20,7 @@ public class set extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(set.this,login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
@@ -28,6 +29,7 @@ public class set extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent();
                 intent.setClass(set.this,login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
