@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/bg1"
+            android:src="@drawable/ic_launcher_skr"
             app:riv_corner_radius="20dp" />
         <!--    app:riv_oval="true"-->
         <TextView
