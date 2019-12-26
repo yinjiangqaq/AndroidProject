@@ -2,6 +2,7 @@ package com.example.skr.ui.dashboard;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +30,13 @@ public class DashboardFragment extends Fragment {
    // private List<snack> snackList = new ArrayList<>();
     private List<post> snackList = new ArrayList<>();
     private DashboardViewModel dashboardViewModel;
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        userAccount = ((MainActivity)getActivity()).getUseraccount();
 
-    }
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
+//        userAccount = ((MainActivity)getActivity()).getUseraccount();
+//
+//    }
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
@@ -44,24 +47,26 @@ public class DashboardFragment extends Fragment {
 
         return root;
     }
-    public void onStart() {
+//    public void onStart() {
+//
+//        super.onStart();
+//
+//    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        userAccount = ((MainActivity)getActivity()).getUseraccount();
+        Log.d("find bug", "DashboardFragment onresume userAccount : "+userAccount);
         Connector.getDatabase();
         initSnack();
-        super.onStart();
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.ranking);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));//一定要加manager
         PostAdapter adapter = new PostAdapter(snackList,userAccount);
         recyclerView.setAdapter(adapter);
     }
+
     private  void initSnack(){
-//        for(int i =0; i<20;i++){
-//            snack chips = new snack("chips",R.drawable.chips);
-//            snackList.add(chips);
-//            snack meet = new snack("beef",R.drawable.beef);
-//            snackList.add(meet);
-//        }
-
         snackList= DataSupport.findAll(post.class);
-
     }
 }
