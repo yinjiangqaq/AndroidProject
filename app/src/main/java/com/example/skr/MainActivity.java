@@ -7,6 +7,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent=getIntent();
         String userAccount=intent.getStringExtra("userAccount");
         useraccount=userAccount;
+        Log.d("find bug", "userAccount mainActivity at onStart: "+userAccount);
     }
 
     @Override//实现点击两次返回键就退出应用的代码

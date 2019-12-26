@@ -67,6 +67,8 @@ public class posting extends AppCompatActivity {
         setContentView(R.layout.activity_posting);
 
         Connector.getDatabase();
+        Intent intent = getIntent();
+        userAccount= intent.getStringExtra("userAccount");//操作本人的
 
         posting_title = (ClearEditText) findViewById(R.id.posting_title);
         posting_content = (MultiLineEditText) findViewById(R.id.posting_content);
@@ -157,6 +159,11 @@ public class posting extends AppCompatActivity {
                             }
                         },500);
 
+//                        Intent intent = new Intent();
+//                        intent.setClass(posting.this,MainActivity.class);
+//                        intent.putExtra("userAccount",userAccount);
+//                        startActivity(intent);
+
                     }
                 }
             }
@@ -167,10 +174,6 @@ public class posting extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-        Connector.getDatabase();
-        Intent intent = getIntent();
-        userAccount= intent.getStringExtra("userAccount");//操作本人的
     }
 
     private void openAlbum()

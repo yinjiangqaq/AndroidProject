@@ -92,7 +92,7 @@ public class detail extends AppCompatActivity {
             @Override
             public void like(boolean like) {
                 if (like==true){
-//                    collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
+                    collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
                     if (collectList.size()==0||collectList==null){
                         collect newCollect = new collect();
                         newCollect.setCollect_id(UUID.randomUUID().toString());
@@ -111,12 +111,14 @@ public class detail extends AppCompatActivity {
                     }
                 }else{
 //                    Toast.makeText(detail.this,"取消点赞", Toast.LENGTH_SHORT).show();
+                    collectList = DataSupport.where("post_id = ? and userAccount = ?",post_id,userAccount).find(collect.class);
                     if (collectList.size()==0||collectList==null){
 
                     }
                     else {
                         collect newCollect = collectList.get(0);
-                        DataSupport.deleteAll(collect.class ,"collect_id = ?",newCollect.getCollect_id());
+                        DataSupport.deleteAll(collect.class ,"post_id = ? and userAccount = ? ",post_id,userAccount);
+//                        DataSupport.deleteAll(collect.class ,"collect_id = ?",newCollect.getCollect_id());
                         collectList.clear();
                         post1.setPost_collect_num(post1.getPost_collect_num()-1);
                         post1.updateAll("post_id = ?",post_id);
