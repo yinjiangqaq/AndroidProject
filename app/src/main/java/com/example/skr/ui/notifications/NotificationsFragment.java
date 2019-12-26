@@ -28,6 +28,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.skr.MainActivity;
 import com.example.skr.MyApplication;
+import com.example.skr.MyPost;
 import com.example.skr.R;
 import com.example.skr.fan;
 import com.example.skr.follow;
@@ -169,6 +170,15 @@ public class NotificationsFragment extends Fragment {
                 Intent intent=new Intent();
                 intent.putExtra("userAccount",userAccount);
                 intent.setClass(getActivity(), set_user_information.class);
+                startActivity(intent);
+            }
+        });
+        fatie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("userAccount",userAccount);
+                intent.setClass(getActivity(), MyPost.class);
                 startActivity(intent);
             }
         });

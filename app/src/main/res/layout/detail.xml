@@ -134,16 +134,38 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <com.ldoublem.thumbUplib.ThumbUpView
-                        android:id="@+id/like"
+<!--                    <com.ldoublem.thumbUplib.ThumbUpView-->
+<!--                        android:id="@+id/like"-->
+<!--                        android:layout_width="30dp"-->
+<!--                        android:layout_height="30dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginRight="15dp"-->
+<!--                        app:cracksColor="#33475f"-->
+<!--                        app:edgeColor="@color/red"-->
+<!--                        app:fillColor="@color/red"-->
+<!--                        app:unlikeType="1" />-->
+
+                    <ImageView
+                        android:id="@+id/post_like_notSelected"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginRight="15dp"
-                        app:cracksColor="#33475f"
-                        app:edgeColor="@color/red"
-                        app:fillColor="@color/red"
-                        app:unlikeType="1" />
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="30dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/like"
+                        android:visibility="visible" />
+
+                    <ImageView
+                        android:id="@+id/post_like_selected"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="30dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/like_select"
+                        android:visibility="gone" />
+
+
 
 
                 </LinearLayout>

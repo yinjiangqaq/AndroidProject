@@ -27,31 +27,16 @@ import java.util.List;
 
 public class DashboardFragment extends Fragment {
     String userAccount;
-   // private List<snack> snackList = new ArrayList<>();
     private List<post> snackList = new ArrayList<>();
     private DashboardViewModel dashboardViewModel;
-
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        userAccount = ((MainActivity)getActivity()).getUseraccount();
-//
-//    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
                 ViewModelProviders.of(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-
-
-
         return root;
     }
-//    public void onStart() {
-//
-//        super.onStart();
-//
-//    }
 
     @Override
     public void onResume() {
@@ -67,6 +52,7 @@ public class DashboardFragment extends Fragment {
     }
 
     private  void initSnack(){
-        snackList= DataSupport.findAll(post.class);
+        //采用LitePal在查询数据的时候进行对收藏数进行降序排序，返回对应的post数组
+        snackList= DataSupport.order("post_collect_num desc").find(post.class);
     }
 }
